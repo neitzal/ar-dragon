@@ -4,72 +4,129 @@ using System.Collections.Generic;
 
 public class SnakeMovement : MonoBehaviour {
 
-	private List<Vector2> trajectory = new List<Vector2>();
-	private Vector2[] segmentPositions;
-	private float[] segmentAngles;
+	private List<Vector2> waypoints = new List<Vector2>();
+	private List<Vector2> segmentPositions;
+	private List<float> segmentAngles;
 	public int segmentOffset = 4;
 	public float speed = 1.0f;
 	public float rotationSpeed = 1.0f;
 	public float trajectoryRecordDelay = 0.5f; // seconds
-	public int nTrajectoryPoints = 4;
-	public int nSegments = 3;
-	private float angle = 0.0f; // radians
+	public int nInitialWayPoints = 4;
+	private float waypointSegmmentRatio;
+	public int nInitialSegments = 3;
+	private float headAngle = 0.0f; // radians
+	public int lengthIncreasePerFood = 3;
+	public int nTorsoOffset = 3; // How many of the first body segments are ignored w.r.t. head collision
+
 
 	private float nextTrajectoryPointTime;
-	private Vector2 currentPosition = new Vector2(0, 0);
+	private Vector2 headPosition = new Vector2(0, 0);
 
 	private List<GameObject> markers = new List<GameObject>();
 	private List<GameObject> segments = new List<GameObject>();
 	public GameObject markerPrefab;
 	public GameObject segmentPrefab;
+	public GameObject snakeHead;
 
+	private bool gameOver = false;
+
+	public float wigglePeriod = 1.0f; // Seconds
+	[Range(0.0f, 0.3f)]
+	public float wiggleAmplitude = 0.5f;
+	private float currentWigglePosition;
+
+	private Vector2 arenaBound;
 
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i < nTrajectoryPoints; i++) {
-			trajectory.Add(0.01f * Vector2.left * (nTrajectoryPoints - i));
+		var floor = GameObject.Find("Floor");
+		arenaBound = 5.0f * new Vector2(
+			floor.transform.localScale.x, 
+			floor.transform.localScale.y);
+		waypointSegmmentRatio = 1.0f * nInitialWayPoints / nInitialSegments;
+		for (int i = 0; i < nInitialWayPoints; i++) {
+			waypoints.Add(0.2f * Vector2.left * (nInitialWayPoints - i));
 //			markers.Add((GameObject) (Instantiate(markerPrefab)));
 		}
-		for (int i = 0; i < nSegments; i++) {
+		for (int i = 0; i < nInitialSegments; i++) {
 			segments.Add((GameObject) (Instantiate(segmentPrefab)));
 		}
 
 		nextTrajectoryPointTime = Time.time + trajectoryRecordDelay;
-		segmentPositions = new Vector2[nSegments];
-		segmentAngles = new float[nSegments];
+		segmentPositions = new List<Vector2>();
+		segmentAngles = new List<float>();
+		for (int i = 0; i < nInitialSegments; i++) {
+			segmentPositions.Add(Vector2.zero);
+			segmentAngles.Add(0);
+		}
 
 		UpdatePositions();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKey(KeyCode.A)) {
-			angle += rotationSpeed * Time.smoothDeltaTime;
-		} else if (Input.GetKey(KeyCode.D)) {
-			angle -= rotationSpeed * Time.smoothDeltaTime;
+		if (gameOver) {
+			Color color = Time.time % 0.4f > 0.2 ? (new Color(0.5f,0.1f,0.1f)) : Color.black;
+			foreach (var segment in segments) {
+				segment.GetComponentInChildren<Renderer>().material.color = color;
+				snakeHead.GetComponent<Renderer>().material.color = color;
+			}
+			return;
 		}
-		currentPosition += speed * Time.smoothDeltaTime * (new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)));
+
+		if (Input.GetKey(KeyCode.A)) {
+			headAngle += rotationSpeed * Time.smoothDeltaTime;
+		} else if (Input.GetKey(KeyCode.D)) {
+			headAngle -= rotationSpeed * Time.smoothDeltaTime;
+		}
+		headPosition += speed * Time.smoothDeltaTime * (new Vector2(Mathf.Cos(headAngle), Mathf.Sin(headAngle)));
+		checkArenaBound();
 
 		if (Time.time > nextTrajectoryPointTime){
 			nextTrajectoryPointTime += trajectoryRecordDelay;
-			trajectory.Add(currentPosition);
-			trajectory.RemoveAt(0);
+			currentWigglePosition = wiggleAmplitude * Mathf.Sin(Time.time * 2 * Mathf.PI / wigglePeriod);
+			waypoints.Add(headPosition + currentWigglePosition * (new Vector2(-Mathf.Sin(headAngle), Mathf.Cos(headAngle))));
+			waypoints.RemoveAt(0);
 		}
 
 		UpdatePositions();
 		UpdateObjects();
 	}
 
+	public void checkArenaBound() {
+		if (Mathf.Abs(headPosition.x) > arenaBound.x || Mathf.Abs(headPosition.y) > arenaBound.y) {
+			ObstacleHit();
+		}
+	}
+
+	public void FoodEaten() {
+		for (int i = 0; i < lengthIncreasePerFood*waypointSegmmentRatio; i++) {
+			waypoints.Insert(0, waypoints[0]);
+		}
+		for (int i = 0; i < lengthIncreasePerFood; i++) {
+			segmentPositions.Insert(0, waypoints[0]);
+			segmentAngles.Insert(0, 0);
+			segments.Add((GameObject) Instantiate(segmentPrefab));
+		}
+	}
+
+	public void ObstacleHit() {
+		gameOver = true;
+	}
+
 	float getSegAngle(int index) {
-		return -Mathf.Atan2(trajectory[index].y - trajectory[index + 1].y, trajectory[index].x - trajectory[index + 1].x);
+		return -Mathf.Atan2(waypoints[index].y - waypoints[index + 1].y, waypoints[index].x - waypoints[index + 1].x);
 	}
 
 	void UpdatePositions() {
+		snakeHead.transform.position = new Vector3(headPosition.x, 0, headPosition.y);
+		snakeHead.transform.eulerAngles = -headAngle * Mathf.Rad2Deg * Vector3.up;
+
 		float currentSegAngle = getSegAngle(0);
 		float nextSegAngle = getSegAngle(0);
 		float prevSegAngle = currentSegAngle;
-		for (int i = 0; i < nSegments; i++) { 
-			float relPosition = i * (1.0f * (nTrajectoryPoints-2) / (nSegments-1)) + 1 - (nextTrajectoryPointTime - Time.time) / trajectoryRecordDelay;
+		for (int i = 0; i < segmentPositions.Count; i++) { 
+			float relPosition = i * (1.0f * (waypoints.Count-2) / (segmentPositions.Count-1)) + 1 - (nextTrajectoryPointTime - Time.time) / trajectoryRecordDelay;
 			int index = ((int) relPosition);
 			float remainder = relPosition - index;
 
@@ -83,7 +140,7 @@ public class SnakeMovement : MonoBehaviour {
 				prevSegAngle = currentSegAngle;
 			}
 
-			if (index < trajectory.Count - 2) {
+			if (index < waypoints.Count - 2) {
 				nextSegAngle = getSegAngle(index + 1);
 			} else {
 				nextSegAngle = currentSegAngle;
@@ -97,11 +154,11 @@ public class SnakeMovement : MonoBehaviour {
 				prevSegAngle += Mathf.Sign(currentSegAngle - prevSegAngle) * 2*Mathf.PI;
 			}
 
-			if (index < trajectory.Count - 1) {				
-				pos = (1 - remainder)*trajectory[index] + remainder*trajectory[index + 1];
+			if (index < waypoints.Count - 1) {				
+				pos = (1 - remainder)*waypoints[index] + remainder*waypoints[index + 1];
 
 			} else {
-				pos = trajectory[index];
+				pos = waypoints[index];
 			}
 			segAngle = Mathf.Max(0, 0.5f - remainder) * prevSegAngle + 
 				(1 - Mathf.Abs(remainder - 0.5f))*currentSegAngle + 
@@ -114,13 +171,20 @@ public class SnakeMovement : MonoBehaviour {
 	void UpdateObjects() {
 		for (int i = 0; i < markers.Count; i++) {
 			GameObject marker = markers[i]; 
-			marker.transform.position = new Vector3(trajectory[i].x, 0, trajectory[i].y );
+			marker.transform.position = new Vector3(waypoints[i].x, 0, waypoints[i].y );
 		}
 
-		for (int i = 0; i < segmentPositions.Length; i++) { 
+		for (int i = 0; i < segmentPositions.Count; i++) { 
 			GameObject segment = segments[i];
 			segment.transform.position = new Vector3(segmentPositions[i].x, 0, segmentPositions[i].y);
 			segment.transform.eulerAngles = Mathf.Rad2Deg * segmentAngles[i] * Vector3.up;
+			if (i < segmentPositions.Count - nTorsoOffset) {
+				segment.GetComponentInChildren<SnakeBodyCollision>().firstSegment = false;
+			} else {
+				segment.GetComponentInChildren<SnakeBodyCollision>().firstSegment = true;
+			}
 		}
 	}
+
+
 }
