@@ -110,6 +110,10 @@ public class SnakeMovement : MonoBehaviour {
 		}
 	}
 
+	public void SlowDown() {
+		Time.timeScale = 0.5f;
+	}
+
 	public void ObstacleHit() {
 		gameOver = true;
 	}
@@ -128,7 +132,12 @@ public class SnakeMovement : MonoBehaviour {
 		for (int i = 0; i < segmentPositions.Count; i++) { 
 			float relPosition = i * (1.0f * (waypoints.Count-2) / (segmentPositions.Count-1)) + 1 - (nextTrajectoryPointTime - Time.time) / trajectoryRecordDelay;
 			int index = ((int) relPosition);
+
 			float remainder = relPosition - index;
+			if (index >= waypoints.Count - 1) {
+				index -= 1;
+				remainder = 1.0f;
+			}
 
 			Vector2 pos = Vector2.zero;
 			float segAngle = 0;
