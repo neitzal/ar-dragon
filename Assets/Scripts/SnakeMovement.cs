@@ -64,7 +64,7 @@ public class SnakeMovement : MonoBehaviour {
 		}
 		for (int i = 0; i < nInitialSegments; i++) {
 			segments.Add((GameObject) (Instantiate(segmentPrefab)));
-			segments[i].transform.SetParent(this.transform);
+			segments[segments.Count - 1].transform.SetParent(this.transform);
 		}
 
 		nextTrajectoryPointDistance = movedDistance + trajectoryRecordSpacing;
@@ -139,7 +139,7 @@ public class SnakeMovement : MonoBehaviour {
 			segmentPositions.Insert(0, waypoints[0]);
 			segmentAngles.Insert(0, 0);
 			segments.Add((GameObject) Instantiate(segmentPrefab));
-			segments[i].transform.SetParent(this.transform);
+			segments[segments.Count - 1].transform.SetParent(this.transform);
 		}
 	}
 
