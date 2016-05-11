@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: VuforiaLicenseKey
-      value: 
+      value: AZxZoxH/////AAAAAaSLMyK7T0c0r0CjTl8wuT8Xvzhp+/SWoc5liYjBwK//oN04hJIS+hGr5gL27+zjZoKyMJ1afRpQinIYgcAy1ZGmfMEmuezsoezVxgzxGAAaQFTODq5eXRjo0Azuj0hmr6UfY0URY5EXJFVWE2nWEhxOfHNAga6rYp4vxB1HJWPP/dK51Jfgvu10xLQkg5ezRrNp6FECfYfNFQfu4FZSqZY0OTysSvjDreE/Jl5ndhX+Z+NarFQht5VNTttYSlD6w+b62KZpqRfiQ57tP4z21Oxf9Ckk77CYc5LwVO+4/yZFpuyi90GMmnAQ6eszPqsMzD+E8Sfhhc9FyBqgruDVfoVR+5CyzhejcWzXPDTWd3hq
       objectReference: {fileID: 0}
     - target: {fileID: 11442664, guid: bf30d577eead1ef40bcf2b404289daf4, type: 2}
       propertyPath: mParentAnchorPoint
