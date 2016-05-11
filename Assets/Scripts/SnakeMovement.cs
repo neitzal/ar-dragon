@@ -37,14 +37,20 @@ public class SnakeMovement : MonoBehaviour {
 
 	private Vector2 arenaBound;
 
-
 	private bool turnLeft = false;
 	private bool turnRight = false;
 	private bool running = false;
 
+	private GameManagement gameManagement;
 
-	// Use this for initialization
+	void Awake() {
+		GameManagement[] gM = GameObject.FindObjectsOfType<GameManagement>();
+		Debug.LogFormat("Found {0} instances of GameManagement", gM.Length);
+		gameManagement = gM[0];
+	}
+		
 	void Start () {
+
 		var floor = GameObject.Find("Floor");
 		arenaBound = 5.0f * new Vector2(
 			floor.transform.localScale.x, 
@@ -52,10 +58,13 @@ public class SnakeMovement : MonoBehaviour {
 		waypointSegmmentRatio = 1.0f * nInitialWayPoints / nInitialSegments;
 		for (int i = 0; i < nInitialWayPoints; i++) {
 			waypoints.Add(0.2f * Vector2.left * (nInitialWayPoints - i));
+
+			// Debug-Purpose only
 //			markers.Add((GameObject) (Instantiate(markerPrefab)));
 		}
 		for (int i = 0; i < nInitialSegments; i++) {
 			segments.Add((GameObject) (Instantiate(segmentPrefab)));
+			segments[i].transform.SetParent(this.transform);
 		}
 
 		nextTrajectoryPointDistance = movedDistance + trajectoryRecordSpacing;
@@ -68,12 +77,7 @@ public class SnakeMovement : MonoBehaviour {
 
 		UpdatePositions();
 	}
-
-
-	public void UnPause() {
-		running = true;
-	}
-
+		
 	public void StartTurningLeft() {
 		turnLeft = true;
 	}
@@ -100,8 +104,6 @@ public class SnakeMovement : MonoBehaviour {
 			}
 			return;
 		}
-
-		if (running == false) return;
 
 		if (turnLeft || Input.GetKey(KeyCode.A)) {
 			headAngle += rotationSpeed * Time.smoothDeltaTime;
@@ -137,6 +139,7 @@ public class SnakeMovement : MonoBehaviour {
 			segmentPositions.Insert(0, waypoints[0]);
 			segmentAngles.Insert(0, 0);
 			segments.Add((GameObject) Instantiate(segmentPrefab));
+			segments[i].transform.SetParent(this.transform);
 		}
 	}
 
@@ -146,6 +149,7 @@ public class SnakeMovement : MonoBehaviour {
 
 	public void ObstacleHit() {
 		gameOver = true;
+		gameManagement.GameOver();
 	}
 
 	float getSegAngle(int index) {
@@ -224,6 +228,4 @@ public class SnakeMovement : MonoBehaviour {
 			}
 		}
 	}
-
-
 }
