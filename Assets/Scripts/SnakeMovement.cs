@@ -37,7 +37,11 @@ public class SnakeMovement : MonoBehaviour {
 
 	private Vector2 arenaBound;
 
+
+	private bool turnLeft = false;
+	private bool turnRight = false;
 	private bool running = false;
+
 
 	// Use this for initialization
 	void Start () {
@@ -70,6 +74,22 @@ public class SnakeMovement : MonoBehaviour {
 		running = true;
 	}
 
+	public void StartTurningLeft() {
+		turnLeft = true;
+	}
+
+	public void StopTurningLeft() {
+		turnLeft = false;
+	}
+
+	public void StartTurningRight() {
+		turnRight = true;
+	}
+
+	public void StopTurningRight() {
+		turnRight = false;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (gameOver) {
@@ -83,9 +103,9 @@ public class SnakeMovement : MonoBehaviour {
 
 		if (running == false) return;
 
-		if (Input.GetKey(KeyCode.A)) {
+		if (turnLeft || Input.GetKey(KeyCode.A)) {
 			headAngle += rotationSpeed * Time.smoothDeltaTime;
-		} else if (Input.GetKey(KeyCode.D)) {
+		} else if (turnRight || Input.GetKey(KeyCode.D)) {
 			headAngle -= rotationSpeed * Time.smoothDeltaTime;
 		}
 		headPosition += speed * Time.smoothDeltaTime * (new Vector2(Mathf.Cos(headAngle), Mathf.Sin(headAngle)));
