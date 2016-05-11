@@ -10,16 +10,16 @@ public class SnakeMovement : MonoBehaviour {
 	public int segmentOffset = 4;
 	public float speed = 1.0f;
 	public float rotationSpeed = 1.0f;
-	public float trajectoryRecordDelay = 0.5f; // seconds
+	public float trajectoryRecordSpacing = 0.2f; // units
 	public int nInitialWayPoints = 4;
 	private float waypointSegmmentRatio;
 	public int nInitialSegments = 3;
 	private float headAngle = 0.0f; // radians
 	public int lengthIncreasePerFood = 3;
 	public int nTorsoOffset = 3; // How many of the first body segments are ignored w.r.t. head collision
+	private float movedDistance = 0.0f;
 
-
-	private float nextTrajectoryPointTime;
+	private float nextTrajectoryPointDistance;
 	private Vector2 headPosition = new Vector2(0, 0);
 
 	private List<GameObject> markers = new List<GameObject>();
@@ -37,6 +37,8 @@ public class SnakeMovement : MonoBehaviour {
 
 	private Vector2 arenaBound;
 
+	private bool running = false;
+
 	// Use this for initialization
 	void Start () {
 		var floor = GameObject.Find("Floor");
@@ -52,7 +54,7 @@ public class SnakeMovement : MonoBehaviour {
 			segments.Add((GameObject) (Instantiate(segmentPrefab)));
 		}
 
-		nextTrajectoryPointTime = Time.time + trajectoryRecordDelay;
+		nextTrajectoryPointDistance = movedDistance + trajectoryRecordSpacing;
 		segmentPositions = new List<Vector2>();
 		segmentAngles = new List<float>();
 		for (int i = 0; i < nInitialSegments; i++) {
@@ -61,6 +63,11 @@ public class SnakeMovement : MonoBehaviour {
 		}
 
 		UpdatePositions();
+	}
+
+
+	public void UnPause() {
+		running = true;
 	}
 
 	// Update is called once per frame
@@ -74,16 +81,19 @@ public class SnakeMovement : MonoBehaviour {
 			return;
 		}
 
+		if (running == false) return;
+
 		if (Input.GetKey(KeyCode.A)) {
 			headAngle += rotationSpeed * Time.smoothDeltaTime;
 		} else if (Input.GetKey(KeyCode.D)) {
 			headAngle -= rotationSpeed * Time.smoothDeltaTime;
 		}
 		headPosition += speed * Time.smoothDeltaTime * (new Vector2(Mathf.Cos(headAngle), Mathf.Sin(headAngle)));
+		movedDistance += speed * Time.smoothDeltaTime;
 		checkArenaBound();
 
-		if (Time.time > nextTrajectoryPointTime){
-			nextTrajectoryPointTime += trajectoryRecordDelay;
+		if (movedDistance > nextTrajectoryPointDistance){
+			nextTrajectoryPointDistance += trajectoryRecordSpacing;
 			currentWigglePosition = wiggleAmplitude * Mathf.Sin(Time.time * 2 * Mathf.PI / wigglePeriod);
 			waypoints.Add(headPosition + currentWigglePosition * (new Vector2(-Mathf.Sin(headAngle), Mathf.Cos(headAngle))));
 			waypoints.RemoveAt(0);
@@ -130,7 +140,7 @@ public class SnakeMovement : MonoBehaviour {
 		float nextSegAngle = getSegAngle(0);
 		float prevSegAngle = currentSegAngle;
 		for (int i = 0; i < segmentPositions.Count; i++) { 
-			float relPosition = i * (1.0f * (waypoints.Count-2) / (segmentPositions.Count-1)) + 1 - (nextTrajectoryPointTime - Time.time) / trajectoryRecordDelay;
+			float relPosition = i * (1.0f * (waypoints.Count-2) / (segmentPositions.Count-1)) + 1 - (nextTrajectoryPointDistance - movedDistance) / trajectoryRecordSpacing;
 			int index = ((int) relPosition);
 
 			float remainder = relPosition - index;
