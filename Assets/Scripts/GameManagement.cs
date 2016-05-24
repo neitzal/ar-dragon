@@ -10,8 +10,11 @@ public class GameManagement : MonoBehaviour {
 
 	private GameObject snake;
 	private SnakeMovement snakeMovement;
+	public int score = 0;
 
 	public void ResetGame() {
+		score = 0;
+		updateScore ();
 		if (snake != null) {
 			Destroy(snake);
 		}
@@ -39,4 +42,11 @@ public class GameManagement : MonoBehaviour {
 		resetButton.SetActive(true);
 	}
 
+	public void AddScore(int value) {
+		score += value;
+		updateScore ();
+	}
+	void updateScore() {
+		Debug.Log("Score: " + score); 
+	}
 }

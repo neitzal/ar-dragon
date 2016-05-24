@@ -1550,7 +1550,7 @@ GameObject:
   - 114: {fileID: 1081944207}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1570,6 +1570,7 @@ MonoBehaviour:
   resetButton: {fileID: 275969693}
   buttonLeft: {fileID: 226299698}
   buttonRight: {fileID: 1302411232}
+  score: 0
 --- !u!4 &1081944208
 Transform:
   m_ObjectHideFlags: 0
