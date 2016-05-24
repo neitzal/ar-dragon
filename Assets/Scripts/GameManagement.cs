@@ -11,8 +11,11 @@ public class GameManagement : MonoBehaviour {
 
 	private GameObject snake;
 	private SnakeMovement snakeMovement;
+	public int score = 0;
 
 	public void ResetGame() {
+		score = 0;
+		updateScore ();
 		if (snake != null) {
 			Destroy(snake);
 		}
@@ -40,12 +43,12 @@ public class GameManagement : MonoBehaviour {
 	public void GameOver() {
 		resetButton.SetActive(true);
 	}
-
-
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.S)) {
-			ResetGame();
-			resetButton.SetActive(false);
-		}
+	
+	public void AddScore(int value) {
+		score += value;
+		updateScore ();
+	}
+	void updateScore() {
+		Debug.Log("Score: " + score); 
 	}
 }

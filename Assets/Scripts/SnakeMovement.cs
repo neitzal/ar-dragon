@@ -47,8 +47,6 @@ public class SnakeMovement : MonoBehaviour {
 
 	private float currentWigglePosition;
 
-	private Vector2 arenaBound;
-
 	private bool turnLeft = false;
 	private bool turnRight = false;
 	private bool running = false;
@@ -63,8 +61,6 @@ public class SnakeMovement : MonoBehaviour {
 	void Start () {
 
 		var floor = GameObject.Find("Floor");
-		arenaBound = new Vector2(5.0f, 5.0f);
-		Debug.LogFormat("arenaBound {0}", arenaBound);
 		waypointSegmmentRatio = 1.0f * nInitialWayPoints / nInitialSegments;
 		waypointWidths = new List<float>();
 		for (int i = 0; i < nInitialWayPoints; i++) {
@@ -125,7 +121,6 @@ public class SnakeMovement : MonoBehaviour {
 		}
 		headPosition += speed * Time.smoothDeltaTime * (new Vector2(Mathf.Cos(headAngle), Mathf.Sin(headAngle)));
 		movedDistance += speed * Time.smoothDeltaTime;
-		checkArenaBound();
 
 		if (movedDistance > nextTrajectoryPointDistance){
 			nextTrajectoryPointDistance += trajectoryRecordSpacing;
@@ -142,13 +137,6 @@ public class SnakeMovement : MonoBehaviour {
 
 		UpdatePositions();
 		UpdateObjects();
-	}
-
-	public void checkArenaBound() {
-		if (Mathf.Abs(headPosition.x) > arenaBound.x || Mathf.Abs(headPosition.y) > arenaBound.y) {
-			Debug.Log("Left arena");
-			ObstacleHit();
-		}
 	}
 
 	public void FoodEaten() {

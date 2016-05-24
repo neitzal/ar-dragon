@@ -6,7 +6,21 @@ public class FoodRepositioning : MonoBehaviour {
 		Elongation, SlowDown
 	}
 
+	private GameManagement gameController;
 	public FoodType type;
+
+	void Start ()
+	{
+		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+		if (gameControllerObject != null)
+		{
+			gameController = gameControllerObject.GetComponent <GameManagement>();
+		}
+		if (gameController == null)
+		{
+			Debug.Log ("Cannot find 'GameController' script");
+		}
+	}
 
 	void OnTriggerEnter(Collider other) {
 		if (other.transform.parent != null) {
@@ -14,6 +28,7 @@ public class FoodRepositioning : MonoBehaviour {
 			if (sm != null) {
 				if (type == FoodType.Elongation) {
 					sm.FoodEaten();
+					gameController.AddScore(10);
 				} else if (type == FoodType.SlowDown) {
 					sm.SlowDown();
 				}
