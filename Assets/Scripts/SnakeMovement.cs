@@ -7,15 +7,18 @@ public class SnakeMovement : MonoBehaviour {
 	private List<Vector2> waypoints = new List<Vector2>();
 	private List<Vector2> segmentPositions;
 	private List<float> segmentAngles;
+	private List<float> segmentWidths;
+	private List<float> waypointWidths;
+
 	public int segmentOffset = 4;
 	public float speed = 1.0f;
 	public float rotationSpeed = 1.0f;
 	public float trajectoryRecordSpacing = 0.2f; // units
-	public int nInitialWayPoints = 4;
+	public int nInitialWayPoints = 20;
 	private float waypointSegmmentRatio;
 	public int nInitialSegments = 3;
 	private float headAngle = 0.0f; // radians
-	public int lengthIncreasePerFood = 3;
+	public int lengthIncreasePerFood = 30;
 	public int nTorsoOffset = 3; // How many of the first body segments are ignored w.r.t. head collision
 	private float movedDistance = 0.0f;
 
@@ -33,6 +36,15 @@ public class SnakeMovement : MonoBehaviour {
 	public float wigglePeriod = 1.0f; // Seconds
 	[Range(0.0f, 0.3f)]
 	public float wiggleAmplitude = 0.5f;
+	public float bulkAmplitude = 0.2f;
+
+	[Range(1.0f, 2.2f)]
+	public float foodEatenWidthIncrease = 1.6f;
+	public float foodEatenWidthAlpha = 0.9f;
+	public float foodEatenWidthDecay = 0.9f;
+	private float currentTargetAdditionalWidth = 0.0f;
+	private float currentSegmentWidth = 1.0f;
+
 	private float currentWigglePosition;
 
 	private Vector2 arenaBound;
@@ -45,20 +57,19 @@ public class SnakeMovement : MonoBehaviour {
 
 	void Awake() {
 		GameManagement[] gM = GameObject.FindObjectsOfType<GameManagement>();
-		Debug.LogFormat("Found {0} instances of GameManagement", gM.Length);
 		gameManagement = gM[0];
 	}
 		
 	void Start () {
 
 		var floor = GameObject.Find("Floor");
-		arenaBound = 5.0f * new Vector2(
-			floor.transform.localScale.x, 
-			floor.transform.localScale.y);
+		arenaBound = new Vector2(5.0f, 5.0f);
+		Debug.LogFormat("arenaBound {0}", arenaBound);
 		waypointSegmmentRatio = 1.0f * nInitialWayPoints / nInitialSegments;
+		waypointWidths = new List<float>();
 		for (int i = 0; i < nInitialWayPoints; i++) {
-			waypoints.Add(0.2f * Vector2.left * (nInitialWayPoints - i));
-
+			waypoints.Add(0.05f * Vector2.left * (nInitialWayPoints - i));
+			waypointWidths.Add(1.0f);
 			// Debug-Purpose only
 //			markers.Add((GameObject) (Instantiate(markerPrefab)));
 		}
@@ -70,9 +81,11 @@ public class SnakeMovement : MonoBehaviour {
 		nextTrajectoryPointDistance = movedDistance + trajectoryRecordSpacing;
 		segmentPositions = new List<Vector2>();
 		segmentAngles = new List<float>();
+		segmentWidths = new List<float>();
 		for (int i = 0; i < nInitialSegments; i++) {
 			segmentPositions.Add(Vector2.zero);
 			segmentAngles.Add(0);
+			segmentWidths.Add(0);
 		}
 
 		UpdatePositions();
@@ -119,6 +132,12 @@ public class SnakeMovement : MonoBehaviour {
 			currentWigglePosition = wiggleAmplitude * Mathf.Sin(Time.time * 2 * Mathf.PI / wigglePeriod);
 			waypoints.Add(headPosition + currentWigglePosition * (new Vector2(-Mathf.Sin(headAngle), Mathf.Cos(headAngle))));
 			waypoints.RemoveAt(0);
+
+
+			waypointWidths.Add(currentSegmentWidth);
+			waypointWidths.RemoveAt(0);
+			currentSegmentWidth += foodEatenWidthAlpha * (1.0f + currentTargetAdditionalWidth - currentSegmentWidth);
+			currentTargetAdditionalWidth = Mathf.Max(0, currentTargetAdditionalWidth - foodEatenWidthDecay);
 		}
 
 		UpdatePositions();
@@ -127,6 +146,7 @@ public class SnakeMovement : MonoBehaviour {
 
 	public void checkArenaBound() {
 		if (Mathf.Abs(headPosition.x) > arenaBound.x || Mathf.Abs(headPosition.y) > arenaBound.y) {
+			Debug.Log("Left arena");
 			ObstacleHit();
 		}
 	}
@@ -134,12 +154,16 @@ public class SnakeMovement : MonoBehaviour {
 	public void FoodEaten() {
 		for (int i = 0; i < lengthIncreasePerFood*waypointSegmmentRatio; i++) {
 			waypoints.Insert(0, waypoints[0]);
+//			waypointWidths.Add(foodEatenWidthIncrease);
+			waypointWidths.Insert(0, 1.0f);
+			currentTargetAdditionalWidth = foodEatenWidthIncrease - 1.0f;
 		}
 		for (int i = 0; i < lengthIncreasePerFood; i++) {
 			segmentPositions.Insert(0, waypoints[0]);
 			segmentAngles.Insert(0, 0);
 			segments.Add((GameObject) Instantiate(segmentPrefab));
 			segments[segments.Count - 1].transform.SetParent(this.transform);
+			segmentWidths.Add(1.0f);
 		}
 	}
 
@@ -148,6 +172,7 @@ public class SnakeMovement : MonoBehaviour {
 	}
 
 	public void ObstacleHit() {
+		Debug.Log("ObstacleHit");
 		gameOver = true;
 		gameManagement.GameOver();
 	}
@@ -175,6 +200,7 @@ public class SnakeMovement : MonoBehaviour {
 
 			Vector2 pos = Vector2.zero;
 			float segAngle = 0;
+			float segWidth = 1;
 
 			currentSegAngle = getSegAngle(index);
 			if (index > 0) {
@@ -199,15 +225,19 @@ public class SnakeMovement : MonoBehaviour {
 
 			if (index < waypoints.Count - 1) {				
 				pos = (1 - remainder)*waypoints[index] + remainder*waypoints[index + 1];
-
+				segWidth = (1 - remainder)*waypointWidths[index] + remainder*waypointWidths[index + 1];
 			} else {
 				pos = waypoints[index];
+				segWidth = waypointWidths[index];
 			}
+
+
 			segAngle = Mathf.Max(0, 0.5f - remainder) * prevSegAngle + 
 				(1 - Mathf.Abs(remainder - 0.5f))*currentSegAngle + 
 				Mathf.Max(0, remainder - 0.5f)*nextSegAngle;
 			segmentPositions[i] = pos;
 			segmentAngles[i] = segAngle;
+			segmentWidths[i] = segWidth;
 		}
 	}
 
@@ -221,6 +251,7 @@ public class SnakeMovement : MonoBehaviour {
 			GameObject segment = segments[i];
 			segment.transform.position = new Vector3(segmentPositions[i].x, 0, segmentPositions[i].y);
 			segment.transform.eulerAngles = Mathf.Rad2Deg * segmentAngles[i] * Vector3.up;
+			segment.transform.localScale = new Vector3(1.0f, 1.0f, segmentWidths[i]);
 			if (i < segmentPositions.Count - nTorsoOffset) {
 				segment.GetComponentInChildren<SnakeBodyCollision>().firstSegment = false;
 			} else {

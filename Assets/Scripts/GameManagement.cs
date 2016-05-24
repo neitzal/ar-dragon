@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManagement : MonoBehaviour {
 
+	public GameObject floorImageTarget;
 	public GameObject snakePrefab;
 	public GameObject resetButton;
 	public GameObject buttonLeft;
@@ -16,6 +17,7 @@ public class GameManagement : MonoBehaviour {
 			Destroy(snake);
 		}
 		snake = (GameObject) Instantiate(snakePrefab, Vector3.zero, Quaternion.identity);
+		snake.transform.parent = floorImageTarget.transform;
 		snakeMovement = snake.GetComponent<SnakeMovement>();
 	}
 
@@ -39,4 +41,11 @@ public class GameManagement : MonoBehaviour {
 		resetButton.SetActive(true);
 	}
 
+
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.S)) {
+			ResetGame();
+			resetButton.SetActive(false);
+		}
+	}
 }

@@ -199,7 +199,7 @@ MonoBehaviour:
   segmentOffset: 4
   speed: 1
   rotationSpeed: 2.61
-  trajectoryRecordSpacing: 0.2
+  trajectoryRecordSpacing: 0.1
   nInitialWayPoints: 12
   nInitialSegments: 12
   lengthIncreasePerFood: 3
@@ -209,6 +209,10 @@ MonoBehaviour:
   snakeHead: {fileID: 195404}
   wigglePeriod: 1
   wiggleAmplitude: 0.08
+  bulkAmplitude: 0.2
+  foodEatenWidthIncrease: 2.2
+  foodEatenWidthAlpha: 0.7
+  foodEatenWidthDecay: 0.2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
