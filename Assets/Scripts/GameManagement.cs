@@ -89,9 +89,8 @@ public class GameManagement : MonoBehaviour {
 		string scoreString = "";
 		List<int> scores = getHighScores ();
 		foreach (int element in scores) {
-			scoreString += element.ToString () + ", ";
+			scoreString += element.ToString () + "\n";
 		}
-		highScoreUI.text = "Highscores: " + scoreString;
-		Debug.Log (scoreString);
+		highScoreUI.text = "Highscores: \n" + scoreString;
 	}
 }
