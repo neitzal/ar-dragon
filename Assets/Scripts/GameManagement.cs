@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameManagement : MonoBehaviour {
@@ -8,10 +9,17 @@ public class GameManagement : MonoBehaviour {
 	public GameObject resetButton;
 	public GameObject buttonLeft;
 	public GameObject buttonRight;
+	public Text scoreUI;
 
 	private GameObject snake;
 	private SnakeMovement snakeMovement;
 	public int score = 0;
+
+	public void Start() {
+		score = 0;
+		scoreUI = GameObject.Find ("Canvas/HUD/Score").GetComponent<Text>();
+		updateScore ();
+	}
 
 	public void ResetGame() {
 		score = 0;
@@ -49,6 +57,6 @@ public class GameManagement : MonoBehaviour {
 		updateScore ();
 	}
 	void updateScore() {
-		Debug.Log("Score: " + score); 
+		scoreUI.text = score.ToString();
 	}
 }
