@@ -19,6 +19,14 @@ public class GameManagement : MonoBehaviour {
 	public int[] highScore;
 	int highest;
 
+	// animation variables
+	Animator anim;
+
+	void Awake() {
+		anim = GetComponent<Animator> ();
+		//resetButton = GetComponent<GameObject> ("ResetButton");
+	}
+
 	public void Start() {
 		score = 0;
 		scoreUI = GameObject.Find ("Canvas/HUD/Score").GetComponent<Text>();
@@ -28,6 +36,8 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void ResetGame() {
+		//anim.ResetTrigger ("GameOver");
+		resetButton.SetActive (false);
 		score = 0;
 		updateScore ();
 		updateHighScore ();
@@ -56,9 +66,9 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void GameOver() {
-		resetButton.SetActive(true);
+		resetButton.SetActive (true);
+		anim.SetTrigger ("GameOver");
 		setHighScore (score);
-
 	}
 	
 	public void AddScore(int value) {
