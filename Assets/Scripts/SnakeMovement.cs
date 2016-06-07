@@ -171,7 +171,7 @@ public class SnakeMovement : MonoBehaviour {
 
 	void UpdatePositions() {
 		snakeHead.transform.position = new Vector3(headPosition.x, 0, headPosition.y);
-		snakeHead.transform.eulerAngles = -headAngle * Mathf.Rad2Deg * Vector3.up;
+		snakeHead.transform.eulerAngles = new Vector3 (-90, 90 -headAngle * Mathf.Rad2Deg, 0);
 
 		float currentSegAngle = getSegAngle(0);
 		float nextSegAngle = getSegAngle(0);

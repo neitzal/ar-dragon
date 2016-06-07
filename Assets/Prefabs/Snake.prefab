@@ -1,21 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &103312
+--- !u!1 &173432
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 482998}
-  - 108: {fileID: 10822958}
+  - 4: {fileID: 404008}
+  - 33: {fileID: 3349298}
+  - 23: {fileID: 2399580}
+  - 65: {fileID: 6595260}
+  - 54: {fileID: 5486320}
   m_Layer: 0
-  m_Name: Point light
+  m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &186060
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,37 +35,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &195404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 447080}
-  - 33: {fileID: 3320942}
-  - 65: {fileID: 6517088}
-  - 23: {fileID: 2392218}
-  - 54: {fileID: 5479570}
-  m_Layer: 0
-  m_Name: SnakeHead
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &447080
+--- !u!4 &404008
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.37246525, y: 0.4, z: 0.45490137}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 482998}
+  m_GameObject: {fileID: 173432}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5000001, w: 0.49999994}
+  m_LocalPosition: {x: -0.888, y: -0, z: 0.334}
+  m_LocalScale: {x: 20, y: 20, z: 10}
+  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_Children: []
   m_Father: {fileID: 471682}
   m_RootOrder: 0
 --- !u!4 &471682
@@ -72,44 +55,34 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.96551114, y: -0.014454633, z: 3.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 447080}
+  - {fileID: 404008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &482998
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.321, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 447080}
-  m_RootOrder: 0
---- !u!23 &2392218
+--- !u!23 &2399580
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195404}
+  m_GameObject: {fileID: 173432}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 835d95822783f4ae794675e33b4d1edf, type: 2}
+  - {fileID: 2100000, guid: 5da1d7e9f3179b74d84f359936e9a097, type: 2}
+  - {fileID: 2100000, guid: 832905d34d7870e41ad166b168aa56fd, type: 2}
+  - {fileID: 2100000, guid: da4b3cb1af5c592469605163fc92675b, type: 2}
+  - {fileID: 2100000, guid: 9c95766ffa2866640a1bab829f2c252a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
@@ -118,19 +91,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3320942
+--- !u!33 &3349298
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195404}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5479570
+  m_GameObject: {fileID: 173432}
+  m_Mesh: {fileID: 4300000, guid: cb17f2dcf99916b46be9507f0adbb83a, type: 3}
+--- !u!54 &5486320
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195404}
+  m_GameObject: {fileID: 173432}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -140,51 +113,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6517088
+--- !u!65 &6595260
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 195404}
+  m_GameObject: {fileID: 173432}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!108 &10822958
-Light:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103312}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 2
-  m_Color: {r: 1, g: 0.7014199, b: 0.32352942, a: 1}
-  m_Intensity: 1.9
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
+  m_Size: {x: 0.019857537, y: 0.026957026, z: 0.018950691}
+  m_Center: {x: -6.260825e-11, y: -0.0065108016, z: 0.010920809}
 --- !u!114 &11426142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +146,7 @@ MonoBehaviour:
   nTorsoOffset: 6
   markerPrefab: {fileID: 161516, guid: a624c5adfcab04f168ef092ef9c3cca5, type: 2}
   segmentPrefab: {fileID: 162042, guid: e8f2e79aa1d4a4b8fb22344fdb9aa086, type: 2}
-  snakeHead: {fileID: 195404}
+  snakeHead: {fileID: 173432}
   wigglePeriod: 1
   wiggleAmplitude: 0.08
   bulkAmplitude: 0.2
