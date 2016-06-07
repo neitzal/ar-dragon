@@ -22,12 +22,8 @@ public class GameManagement : MonoBehaviour {
 	// animation variables
 	Animator anim;
 
-	void Awake() {
-		anim = GetComponent<Animator> ();
-		//resetButton = GetComponent<GameObject> ("ResetButton");
-	}
-
 	public void Start() {
+		anim = GameObject.Find("Canvas").GetComponent<Animator> ();
 		score = 0;
 		scoreUI = GameObject.Find ("Canvas/HUD/Score").GetComponent<Text>();
 		highScoreUI = GameObject.Find ("Canvas/HUD/HighScore").GetComponent<Text>();
@@ -36,7 +32,7 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void ResetGame() {
-		//anim.ResetTrigger ("GameOver");
+		anim.SetBool ("isGameOver", false);
 		resetButton.SetActive (false);
 		score = 0;
 		updateScore ();
@@ -45,7 +41,7 @@ public class GameManagement : MonoBehaviour {
 			Destroy(snake);
 		}
 		snake = (GameObject) Instantiate(snakePrefab, Vector3.zero, Quaternion.identity);
-		snake.transform.parent = floorImageTarget.transform;
+		//snake.transform.parent = floorImageTarget.transform;
 		snakeMovement = snake.GetComponent<SnakeMovement>();
 	}
 
@@ -67,7 +63,8 @@ public class GameManagement : MonoBehaviour {
 
 	public void GameOver() {
 		resetButton.SetActive (true);
-		anim.SetTrigger ("GameOver");
+		anim.SetBool ("isGameOver", true);
+		//resetButton.SetActive(true);
 		setHighScore (score);
 	}
 	
