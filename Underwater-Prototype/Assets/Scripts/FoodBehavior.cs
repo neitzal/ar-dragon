@@ -6,7 +6,9 @@ public class FoodBehavior : MonoBehaviour {
 	public ParticleSystem particleSystem;
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.rigidbody.CompareTag("DragonHead")) {
+		if (collision.rigidbody == null) {
+			Debug.Log("Something collided with food, without having a rigid body component!");
+		} else if (collision.rigidbody.CompareTag("DragonHead")) {
 
 			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
 

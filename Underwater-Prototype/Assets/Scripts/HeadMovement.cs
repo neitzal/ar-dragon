@@ -16,14 +16,19 @@ public class HeadMovement : MonoBehaviour {
 	public float distanceBetweenSegments = 0.2f;
 	public GameObject segmentPrefab;
 
+	public bool Playing { get; set; }
+
 	private Rigidbody rb;
 	public List<Rigidbody> segmentBodies;
+
+	private float turnInput = 0; // Number between -1 (left) and 1 (right), specifies how head should be turned
 
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
 		segmentBodies = new List<Rigidbody>();
 		CreateSegments(nSegments);
+		Playing = true;
 
 	}
 
@@ -42,7 +47,7 @@ public class HeadMovement : MonoBehaviour {
 				joint.connectedBody = segmentBodies[segmentBodies.Count - 1];
 			}
 
-			segment.transform.SetParent(GameObject.Find("Snake").transform);
+			segment.transform.SetParent(transform.parent.transform);
 
 			segmentBodies.Add(segment.GetComponent<Rigidbody>());
 			var segmentWiggle = segment.GetComponent<SegmentWiggle>();
@@ -50,22 +55,69 @@ public class HeadMovement : MonoBehaviour {
 			segmentWiggle.setWiggleForce(wiggleForce * Mathf.Max(0, (1.0f - ((float) segmentBodies.Count / n))));
 		}	
 	}
-	
+
+	public void StartTurningRight() {
+		turnInput = 1;
+	}
+
+	public void StopTurningRight() {
+		if (turnInput > 0) {
+			turnInput = 0;
+		}
+	}
+
+	public void StartTurningLeft() {
+		turnInput = -1;
+	}
+
+	public void StopTurningLeft() {
+		if (turnInput < 0) {
+			turnInput = 0;
+		}
+	}
+
+	void Update() {
+//		if (!Playing) {
+//			return;
+//		}
+
+		if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+			turnInput = -1;
+		} 
+		if (Input.GetKeyUp(KeyCode.LeftArrow)) {
+			if (turnInput < 0) {
+				turnInput = 0;
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.RightArrow)) {
+			turnInput = 1;
+		} 
+		if (Input.GetKeyUp(KeyCode.RightArrow)) {
+			if (turnInput > 0) {
+				turnInput = 0;
+			}
+		}
+
+
+	}
+
 	void FixedUpdate () {
+		if (!Playing) {
+			rb.constraints = RigidbodyConstraints.None;
+			rb.useGravity = true;
+			rb.drag /= 2;
+			rb.angularDrag = 0;
+			return;
+		}
+
 		Vector3 direction = transform.forward;
 		direction.y = 0;
 		rb.AddForce((forwardForce + forwardForceAmplitude*Mathf.Sin(2*Mathf.PI * Time.time / forwardForcePeriod)) * direction.normalized);
 
-		if (Input.GetKey(KeyCode.LeftArrow)) {
-			if (rb.angularVelocity.y > (-angularVel)) {
-				rb.AddTorque(-torque * Vector3.up);	
-			}
-		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
-//			float currentTorque = torque * (angularVel - rb.angularVelocity.y);
-			if (rb.angularVelocity.y < angularVel) {
-				rb.AddTorque(torque * Vector3.up);	
-			}
+		if (Mathf.Sign(turnInput) * rb.angularVelocity.y < angularVel) {
+			rb.AddTorque(turnInput * torque * Vector3.up);	
 		}
 	}
+
 }
