@@ -4,6 +4,21 @@ using System.Collections;
 public class FoodBehavior : MonoBehaviour {
 		
 	public ParticleSystem particleSystem;
+	public GameManagement gameManagement;
+
+	void Start() {
+		{
+			GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+			if (gameControllerObject != null)
+			{
+				gameManagement = gameControllerObject.GetComponent <GameManagement>();
+			}
+			if (gameManagement == null)
+			{
+				Debug.Log ("Cannot find 'GameController' script");
+			}
+		}
+	}
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.rigidbody.CompareTag("DragonHead")) {
@@ -14,6 +29,8 @@ public class FoodBehavior : MonoBehaviour {
 
 			GetComponent<Animator>().SetTrigger("Disappear");
 			particleSystem.Play();
+
+			gameManagement.FoodEaten ();
 		}
 	}
 
