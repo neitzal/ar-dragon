@@ -14,7 +14,7 @@ public class FoodPositioning : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider other) {
-		if (other.CompareTag("obstacle")) {
+		if (other.CompareTag("Obstacle")) {
 			Reposition();
 		}
 	}
