@@ -21,17 +21,21 @@ public class FoodBehavior : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.rigidbody.CompareTag("DragonHead")) {
+		// throws error if collision has no rigidbody
+		if (collision.rigidbody != null) {
+			if (collision.rigidbody.CompareTag ("DragonHead")) {
 
-			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
+				collision.rigidbody.GetComponent<FoodEatWave> ().InitiateWave ();
 
-			collision.rigidbody.GetComponent<HeadMovement>().CreateSegments(5);
+				collision.rigidbody.GetComponent<HeadMovement> ().CreateSegments (5);
 
-			GetComponent<Animator>().SetTrigger("Disappear");
-			particleSystem.Play();
+				GetComponent<Animator> ().SetTrigger ("Disappear");
+				particleSystem.Play ();
 
-			gameManagement.FoodEaten ();
+				gameManagement.FoodEaten ();
+			} 
 		}
+
 	}
 
 	void Update() {

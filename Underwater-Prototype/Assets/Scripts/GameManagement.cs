@@ -4,9 +4,11 @@ using System.Collections;
 public class GameManagement : MonoBehaviour {
 
 	public GameObject foodPrefab;
+	ScoreManager scoreManager;
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("game started");
+		scoreManager = new ScoreManager ();
 		Instantiate (foodPrefab);
 	}
 	
@@ -16,6 +18,7 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void FoodEaten() {
+		scoreManager.AddScore (10);
 		Instantiate (foodPrefab);
 	}
 }
