@@ -1,42 +1,51 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class GameManagement : MonoBehaviour {
 
-	public GameObject foodPrefab;
-	ScoreManager scoreManager;
-	public GameObject damageUI;
-	public Slider healthSlider;
-	int health;
-	// Use this for initialization
-	void Start () {
-		Debug.Log ("game started");
-		health = 100;
-		healthSlider.value = 100;
-		scoreManager = new ScoreManager ();
-		Instantiate (foodPrefab);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	private HeadMovement headMovement;
+	private Animator gameOverTextAnim;
+
+
+	void Start() {
+		var headMovements = GameObject.FindObjectsOfType<HeadMovement>();
+		if (headMovements.Length == 0) {
+			throw new UnityException("No HeadMovement Script found in Scene!");
+		} else if (headMovements.Length > 1) {
+			throw new UnityException("Currently multiple Instances of HeadMovement are not supported!");
+		}
+
+		headMovement = headMovements[0];
+
+		var gameOverText = GameObject.Find("GameOverText");
+		if (gameOverText != null) {
+			gameOverTextAnim = gameOverText.GetComponent<Animator>();	
+		} else {
+			Debug.LogError("No GameObject called 'GameOverText' was found!");
+		}
 	}
 
-	public void FoodEaten() {
-		scoreManager.AddScore (10);
-		Instantiate (foodPrefab);
+	public void OnSnakeDead() {
+		Debug.Log("Game over!");
+		gameOverTextAnim.SetTrigger("GameOver");
+		headMovement.Playing = false;
+
 	}
-	public void ReduceHealth(int value) {
-		health -= value;
-		healthSlider.value -= value;
-		StartCoroutine (flashDamage ());
-		Debug.Log ("health: " + health.ToString ());
+		
+	public void StartTurningRight() {
+		headMovement.StartTurningRight();
 	}
 
-	IEnumerator flashDamage() {
-		damageUI.SetActive (true);
-		yield return new WaitForEndOfFrame();
-		damageUI.SetActive(false);
+	public void StopTurningRight() {
+		headMovement.StopTurningRight();
 	}
+
+	public void StartTurningLeft() {
+		headMovement.StartTurningLeft();
+	}
+
+	public void StopTurningLeft() {
+		headMovement.StopTurningLeft();
+	}
+
 }

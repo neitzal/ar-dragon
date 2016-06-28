@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3327950}
   - 23: {fileID: 2359746}
   - 65: {fileID: 6520758}
+  - 114: {fileID: 11414990}
   m_Layer: 0
   m_Name: Pillar
   m_TagString: Obstacle
@@ -76,6 +77,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.031577773, y: 0.12879348, z: 0.03157778}
   m_Center: {x: -9.313226e-10, y: 0.0633391, z: 9.313226e-10}
+--- !u!114 &11414990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

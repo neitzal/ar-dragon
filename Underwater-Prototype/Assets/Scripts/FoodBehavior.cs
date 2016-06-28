@@ -4,33 +4,18 @@ using System.Collections;
 public class FoodBehavior : MonoBehaviour {
 		
 	public ParticleSystem particleSystem;
-	public GameManagement gameManagement;
 
-	void Start() {
-		{
-			GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-			if (gameControllerObject != null)
-			{
-				gameManagement = gameControllerObject.GetComponent <GameManagement>();
-			}
-			if (gameManagement == null)
-			{
-				Debug.Log ("Cannot find 'GameController' script");
-			}
-		}
-	}
+	void OnCollisionEnter(Collision collision) {
+		if (collision.rigidbody == null) {
+			Debug.Log("Something collided with food, without having a rigid body component!");
+		} else if (collision.rigidbody.CompareTag("DragonHead")) {
 
-	void OnTriggerEnter(Collider other) {
-		if (other.CompareTag ("DragonHead")) {
-			Debug.Log ("collision with snakehead");
-			other.GetComponent<FoodEatWave> ().InitiateWave ();
+			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
 
-			other.GetComponent<HeadMovement> ().CreateSegments (5);
+			collision.rigidbody.GetComponent<HeadMovement>().CreateSegments(5);
 
-			GetComponent<Animator> ().SetTrigger ("Disappear");
-			particleSystem.Play ();
-
-			gameManagement.FoodEaten ();
+			GetComponent<Animator>().SetTrigger("Disappear");
+			particleSystem.Play();
 		}
 	}
 
