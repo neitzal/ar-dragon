@@ -3,6 +3,8 @@ using System.Collections;
 
 public class FireElementBehavior : MonoBehaviour {
 
+	//TODO: for performance optimization make everything to particles
+
 	public float rotationSpeedRange = 3000f;
 	private Rigidbody rb;
 
@@ -13,6 +15,7 @@ public class FireElementBehavior : MonoBehaviour {
 			Random.Range(-rotationSpeedRange, rotationSpeedRange), 
 			Random.Range(-rotationSpeedRange, rotationSpeedRange), 
 			Random.Range(-rotationSpeedRange, rotationSpeedRange));
+		Destroy (this.gameObject, 1.0f);
 	}
 
 	void OnCollisionEnter(Collision collision) {
