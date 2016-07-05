@@ -3,7 +3,12 @@ using System.Collections;
 
 public class FoodBehavior : MonoBehaviour {
 		
-	public ParticleSystem particleSystem;
+	public ParticleSystem particle;
+	Animator animator;
+
+	void Awake() {
+		animator = GetComponent<Animator> ();
+	}
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.rigidbody == null) {
@@ -12,16 +17,41 @@ public class FoodBehavior : MonoBehaviour {
 
 			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
 
+			// TODO: if body is near level boundary segment gets created outside of level
+
+			// TODO: sometimes segment animation get broken and wiggling looks not very smooth
 			collision.rigidbody.GetComponent<HeadMovement>().CreateSegments(5);
 
-			GetComponent<Animator>().SetTrigger("Disappear");
-			particleSystem.Play();
+			animator.SetTrigger("Disappear");
+			particle.Play();
 		}
 	}
 
 	void Update() {
-		if (transform.localScale.x <= 0.001f) {
-			Destroy(this.gameObject);
+		if(animator.GetCurrentAnimatorStateInfo(0).IsName("Disappeared")) {
+			Debug.Log("disappeared");
+			animator.SetTrigger("Appear");
+			Reposition ();
 		}
+	}
+
+	void OnCollisionStay(Collision collision) {
+		if (collision.collider.gameObject.CompareTag("Obstacle")) {
+			Debug.Log("food collision with obstacle, new position");
+			Reposition ();
+		}
+
+	}
+
+	void Reposition() {
+		GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		//TODO: create vector from level boundaries
+
+		//TODO: make indicator for next food position (maybe like a compass needle)
+
+		transform.position = new Vector3(
+			Random.Range(-5f, 5f), 
+			transform.position.y, 
+			Random.Range(-5f, 5f));
 	}
 }
