@@ -6,6 +6,7 @@ public class GameManagement : MonoBehaviour {
 	private HeadMovement headMovement;
 	private Animator gameOverTextAnim;
 
+	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
 	void Start() {
 		var headMovements = GameObject.FindObjectsOfType<HeadMovement>();
@@ -23,6 +24,9 @@ public class GameManagement : MonoBehaviour {
 		} else {
 			Debug.LogError("No GameObject called 'GameOverText' was found!");
 		}
+
+		Physics.gravity = gravity;
+
 	}
 
 	public void OnSnakeDead() {

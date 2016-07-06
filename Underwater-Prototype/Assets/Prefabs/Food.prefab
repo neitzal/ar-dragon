@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6ce7f94ed9842039b303294bc86147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 0}
+  particle: {fileID: 19867520}
 --- !u!114 &11461166
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -1373,6 +1373,18 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11415278, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: healthyColor.r
+      value: 0.24264705
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415278, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: healthyColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415278, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: healthyColor.b
+      value: 0.4319853
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
   m_IsPrefabParent: 0
@@ -1437,6 +1449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0a79c2100c24d3c97c86e054572001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gravity: {x: 0, y: -2, z: 0}
 --- !u!4 &1572945212
 Transform:
   m_ObjectHideFlags: 0
