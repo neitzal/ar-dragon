@@ -6,6 +6,18 @@ public class FoodBehavior : MonoBehaviour {
 	public ParticleSystem particle;
 	Animator animator;
 
+	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
+	public AudioClip foodsound;
+
+	// Use this for initialization
+	void Start () 
+	{
+		gameObject.AddComponent<AudioSource> ();
+		audiosource.clip = foodsound;
+		audiosource.playOnAwake = false;
+
+	}
+
 	void Awake() {
 		animator = GetComponent<Animator> ();
 	}
@@ -26,6 +38,7 @@ public class FoodBehavior : MonoBehaviour {
 			particle.Play();
 		}
 	}
+		
 
 	void Update() {
 		if(animator.GetCurrentAnimatorStateInfo(0).IsName("Disappeared")) {
@@ -39,6 +52,14 @@ public class FoodBehavior : MonoBehaviour {
 		if (collision.collider.gameObject.CompareTag("Obstacle")) {
 			Debug.Log("food collision with obstacle, new position");
 			Reposition ();
+		}
+
+		if (collision.rigidbody != null) {
+			if (collision.gameObject.CompareTag ("DragonHead")) {
+				if (!audiosource.isPlaying) {
+					audiosource.Play ();
+				}
+			}
 		}
 
 	}

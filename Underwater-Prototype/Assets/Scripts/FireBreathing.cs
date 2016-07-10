@@ -9,11 +9,24 @@ public class FireBreathing : MonoBehaviour {
 	public Vector3 initRelativeOffset = new Vector3(0.0f, 0.2f, 0.5f);
 	public float initPositionSpread = 0.2f;
 	public float angluarSpread = 0.5f;
-	
+
+	public AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
+	public AudioClip breathesound;
+
+	// Use this for initialization
+	void Start () 
+	{
+		gameObject.AddComponent<AudioSource> ();
+		audiosource.clip = breathesound;
+		audiosource.playOnAwake = false;
+
+	}
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKey(KeyCode.Space)) {
 			BreatheFire();
+			PlayBreatheSound ();
 		}
 	}
 
@@ -27,5 +40,9 @@ public class FireBreathing : MonoBehaviour {
 				transform.rotation);
 			elem.GetComponent<Rigidbody>().velocity = strength * transform.forward + 0.3f*strength * transform.up + Random.Range(-angluarSpread, angluarSpread)*strength * transform.right;
 		}
+	}
+
+	void PlayBreatheSound (){
+		audiosource.Play ();
 	}
 }

@@ -6,6 +6,9 @@ public class GameManagement : MonoBehaviour {
 	private HeadMovement headMovement;
 	private Animator gameOverTextAnim;
 
+	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
+	public AudioClip gameoversound;
+
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
 	void Start() {
@@ -27,15 +30,24 @@ public class GameManagement : MonoBehaviour {
 
 		Physics.gravity = gravity;
 
+		gameObject.AddComponent<AudioSource> ();
+		audiosource.clip = gameoversound;
+		audiosource.playOnAwake = false;
+		audiosource.volume = (float)0.4;
+
 	}
 
 	public void OnSnakeDead() {
 		Debug.Log("Game over!");
 		gameOverTextAnim.SetTrigger("GameOver");
 		headMovement.Playing = false;
-
+		PlayGameOverSound();
 	}
 		
+	void PlayGameOverSound(){
+		audiosource.Play ();
+	}
+
 	public void StartTurningRight() {
 		headMovement.StartTurningRight();
 	}
