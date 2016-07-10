@@ -320,6 +320,12 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 187986, guid: 8966ca4eee07f441fb412047018405eb, type: 2}
   m_PrefabInternal: {fileID: 1789198383}
+--- !u!114 &120816964 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11439074, guid: 8966ca4eee07f441fb412047018405eb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1789198383}
+  m_Script: {fileID: 11500000, guid: cdbabab82b8e44dbf936ab05c9a1dced, type: 3}
 --- !u!82 &120816965
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1820,6 +1826,38 @@ Prefab:
     - target: {fileID: 22457966, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450684, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 120816964}
+    - target: {fileID: 11450684, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTurningRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11450684, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 120816964}
+    - target: {fileID: 11450684, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopTurningRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400140, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 120816964}
+    - target: {fileID: 11400140, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTurningLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400140, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 120816964}
+    - target: {fileID: 11400140, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StopTurningLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
