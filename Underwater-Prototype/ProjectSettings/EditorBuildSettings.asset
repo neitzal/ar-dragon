@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/Scenes/scannscreen2.unity
   - enabled: 1
     path: Assets/Scenes/forbidden-city.unity
+  - enabled: 1
+    path: Assets/Scenes/outro.unity
