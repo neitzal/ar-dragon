@@ -13,7 +13,7 @@ GameObject:
   - 33: {fileID: 3306092}
   - 114: {fileID: 11458522}
   - 135: {fileID: 13506920}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 4: {fileID: 435292}
   - 33: {fileID: 3328184}
   - 23: {fileID: 2399356}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 4: {fileID: 452776}
   - 33: {fileID: 3370922}
   - 23: {fileID: 2351832}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 468914}
   - 33: {fileID: 3312746}
   - 23: {fileID: 2346576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 429012}
   - 95: {fileID: 9500472}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dragon_body_segment_soft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - 4: {fileID: 494644}
   - 33: {fileID: 3351660}
   - 23: {fileID: 2392190}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 462334}
   - 95: {fileID: 9572252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dragon_body_segment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 41b4d01138a4447a6977923ba6745482, type: 2}
+  - {fileID: 2100000, guid: 54b55058d43294cde880f32584ea66c4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -305,7 +305,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 41b4d01138a4447a6977923ba6745482, type: 2}
+  - {fileID: 2100000, guid: 54b55058d43294cde880f32584ea66c4, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

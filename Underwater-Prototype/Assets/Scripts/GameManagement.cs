@@ -11,6 +11,7 @@ public class GameManagement : MonoBehaviour {
 	public AudioClip gameoversound;
 	public ScoreManager scoreManager;
 	public Text scoreUI;
+	public GameObject resetButton;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -41,6 +42,13 @@ public class GameManagement : MonoBehaviour {
 		// setup scoreManager and UI
 		scoreManager = new ScoreManager (scoreUI);
 
+		// disable resetButton
+		resetButton.SetActive(false);
+
+	}
+
+	public void ResetGame() {
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void OnSnakeDead() {
@@ -48,6 +56,7 @@ public class GameManagement : MonoBehaviour {
 		gameOverTextAnim.SetTrigger("GameOver");
 		headMovement.Playing = false;
 		PlayGameOverSound();
+		resetButton.SetActive (true);
 	}
 		
 	void PlayGameOverSound(){

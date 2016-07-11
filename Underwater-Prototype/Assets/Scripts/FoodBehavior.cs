@@ -28,6 +28,7 @@ public class FoodBehavior : MonoBehaviour {
 		if (collision.rigidbody == null) {
 			Debug.Log("Something collided with food, without having a rigid body component!");
 		} else if (collision.rigidbody.CompareTag("DragonHead")) {
+			Debug.Log ("collision dragonhead food");
 
 			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
 

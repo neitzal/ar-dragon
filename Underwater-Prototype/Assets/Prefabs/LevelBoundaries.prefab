@@ -12,7 +12,7 @@ GameObject:
   - 65: {fileID: 6519726}
   - 23: {fileID: 2348394}
   - 114: {fileID: 11488842}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (3)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 65: {fileID: 6546662}
   - 23: {fileID: 2340780}
   - 114: {fileID: 11459648}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (2)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - 65: {fileID: 6518708}
   - 23: {fileID: 2378102}
   - 114: {fileID: 11492878}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (4)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - 65: {fileID: 6561696}
   - 23: {fileID: 2332840}
   - 114: {fileID: 11478126}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtsound: {fileID: 0}
 --- !u!114 &11478126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,6 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtsound: {fileID: 0}
 --- !u!114 &11488842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -373,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtsound: {fileID: 0}
 --- !u!114 &11492878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -384,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtsound: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
