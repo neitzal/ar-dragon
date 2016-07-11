@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManagement : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class GameManagement : MonoBehaviour {
 
 	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip gameoversound;
+	public ScoreManager scoreManager;
+	public Text scoreUI;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -34,6 +37,9 @@ public class GameManagement : MonoBehaviour {
 		audiosource.clip = gameoversound;
 		audiosource.playOnAwake = false;
 		audiosource.volume = (float)0.4;
+
+		// setup scoreManager and UI
+		scoreManager = new ScoreManager (scoreUI);
 
 	}
 
@@ -63,5 +69,4 @@ public class GameManagement : MonoBehaviour {
 	public void StopTurningLeft() {
 		headMovement.StopTurningLeft();
 	}
-
 }

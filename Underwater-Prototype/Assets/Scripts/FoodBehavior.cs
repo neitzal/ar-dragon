@@ -8,6 +8,7 @@ public class FoodBehavior : MonoBehaviour {
 
 	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip foodsound;
+	public GameObject gameManagement;
 
 	// Use this for initialization
 	void Start () 
@@ -15,6 +16,7 @@ public class FoodBehavior : MonoBehaviour {
 		gameObject.AddComponent<AudioSource> ();
 		audiosource.clip = foodsound;
 		audiosource.playOnAwake = false;
+
 
 	}
 
@@ -36,6 +38,8 @@ public class FoodBehavior : MonoBehaviour {
 
 			animator.SetTrigger("Disappear");
 			particle.Play();
+			gameManagement.GetComponent<GameManagement>().scoreManager.AddScore (100);
+
 		}
 	}
 		

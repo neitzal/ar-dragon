@@ -206,6 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 19867520}
+  foodsound: {fileID: 8300000, guid: 2878b3f01bbd99741b68d098d59dd13b, type: 3}
+  gameManagement: {fileID: 0}
 --- !u!114 &11461166
 MonoBehaviour:
   m_ObjectHideFlags: 1

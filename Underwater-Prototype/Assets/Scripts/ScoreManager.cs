@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,6 +8,14 @@ public class ScoreManager {
 	public int score = 0;
 	public int[] highScore;
 	int highest;
+	public Text ui;
+
+	public ScoreManager(Text text) {
+		score = 0;
+		ui = text;
+		updateScore ();
+		Debug.Log ("scoremanager init");
+	}
 
 	public void AddScore(int value) {
 		score += value;
@@ -14,8 +23,8 @@ public class ScoreManager {
 	}
 
 	void updateScore() {
-		//scoreUI.text = score.ToString();
 		Debug.Log(score.ToString());
+		ui.text = score.ToString ();
 	}
 
 	List<int> getHighScores() {
