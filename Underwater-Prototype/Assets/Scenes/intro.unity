@@ -1109,6 +1109,8 @@ GameObject:
   - 92: {fileID: 1161163477}
   - 81: {fileID: 1161163476}
   - 114: {fileID: 1161163481}
+  - 114: {fileID: 1161163482}
+  - 54: {fileID: 1161163483}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -1177,10 +1179,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1161163475}
-  m_LocalRotation: {x: 0.00977423, y: 0.9957694, z: 0.09134592, w: 0.0019458085}
-  m_LocalPosition: {x: 243.81, y: 3.97, z: 232.64}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 243.81, y: 8.18, z: 223.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 349.5207, y: 179.6702, z: 361.1551}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -1195,6 +1197,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda8dbcfc8d2ff54faa9fc0cccdf4021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1161163482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1161163475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbaf53e934a7d41cc8c6ed766ec70efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObject: {fileID: 2001923067}
+  spring: 5
+  damp: 5
+--- !u!54 &1161163483
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1161163475}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1555786466
 Prefab:
   m_ObjectHideFlags: 0
@@ -1487,3 +1518,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
+--- !u!4 &2001923067 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 465940, guid: 5df41f55b23e74d8dbf7953d501f77f1, type: 2}
+  m_PrefabInternal: {fileID: 1555786466}
