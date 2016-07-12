@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class FoodBehavior : MonoBehaviour {
+
+	public enum FoodType { 
+		Regular, 
+		Diamond 
+	}
 		
 	public ParticleSystem particle;
 	Animator animator;
@@ -9,6 +16,9 @@ public class FoodBehavior : MonoBehaviour {
 	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip foodsound;
 	public GameObject gameManagement;
+	public FoodType foodType;
+
+
 
 	// Use this for initialization
 	void Start () 
@@ -17,7 +27,7 @@ public class FoodBehavior : MonoBehaviour {
 		audiosource.clip = foodsound;
 		audiosource.playOnAwake = false;
 
-
+		foodType = FoodType.Regular;
 	}
 
 	void Awake() {
@@ -26,21 +36,32 @@ public class FoodBehavior : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.rigidbody == null) {
-			Debug.Log("Something collided with food, without having a rigid body component!");
-		} else if (collision.rigidbody.CompareTag("DragonHead")) {
-			Debug.Log ("collision dragonhead food");
+			Debug.Log ("Something collided with food, without having a rigid body component!");
+		} 
+		else if (collision.rigidbody.CompareTag ("DragonHead")) {
+			switch(foodType) {
 
-			collision.rigidbody.GetComponent<FoodEatWave>().InitiateWave();
+				case FoodType.Regular: {
+					Debug.Log ("collision dragonhead-food");
 
-			// TODO: if body is near level boundary segment gets created outside of level
+					collision.rigidbody.GetComponent<FoodEatWave> ().InitiateWave ();
 
-			// TODO: sometimes segment animation get broken and wiggling looks not very smooth
-			collision.rigidbody.GetComponent<HeadMovement>().CreateSegments(5);
+					// TODO: if body is near level boundary segment gets created outside of level
 
-			animator.SetTrigger("Disappear");
-			particle.Play();
-			gameManagement.GetComponent<GameManagement>().scoreManager.AddScore (100);
+					// TODO: sometimes segment animation get broken and wiggling looks not very smooth
+					collision.rigidbody.GetComponent<HeadMovement> ().CreateSegments (5);
 
+					animator.SetTrigger ("Disappear");
+					particle.Play ();
+					gameManagement.GetComponent<GameManagement> ().scoreManager.AddScore (100);
+					break;
+				}
+
+				case FoodType.Diamond: {
+					Debug.Log ("collision dragonhead-diamond");
+					break;
+				}
+			}
 		}
 	}
 		
