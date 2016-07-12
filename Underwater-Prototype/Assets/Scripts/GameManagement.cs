@@ -12,10 +12,16 @@ public class GameManagement : MonoBehaviour {
 	public ScoreManager scoreManager;
 	public Text scoreUI;
 	public GameObject resetButton;
+	public bool fireBreathing = false;
+	public bool isPause = false;
+	public Text pauseButton;
+	public GameObject buttonFire;
+	public GameObject infoScreen;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
 	void Start() {
+		infoScreen.SetActive (false);
 		var headMovements = GameObject.FindObjectsOfType<HeadMovement>();
 		if (headMovements.Length == 0) {
 			throw new UnityException("No HeadMovement Script found in Scene!");
@@ -44,6 +50,14 @@ public class GameManagement : MonoBehaviour {
 
 		// disable resetButton
 		resetButton.SetActive(false);
+
+		ShowInfoScreen ("please place device above the levelmarker to start the game");
+
+	}
+	void Update() {
+		if (fireBreathing != buttonFire.activeSelf)
+			buttonFire.SetActive (fireBreathing);
+
 
 	}
 
@@ -77,5 +91,39 @@ public class GameManagement : MonoBehaviour {
 
 	public void StopTurningLeft() {
 		headMovement.StopTurningLeft();
+	}
+
+	public void SetFireBreathing (bool value) {
+		fireBreathing = value;
+		Debug.Log("Firebreating set to: " + fireBreathing);
+	}
+
+	public void Pause() {
+		Time.timeScale = 0;
+		isPause = true;
+		pauseButton.text = ">";
+	}
+
+	public void UnPause() {
+		Time.timeScale = 1;
+		isPause = false;
+		pauseButton.text = "II";
+	}
+
+	public void TriggerPause() {
+		if (Time.timeScale == 0)
+			UnPause ();
+		else
+			Pause ();
+	}
+
+	public void ShowInfoScreen(string text) {
+		Pause();
+		infoScreen.GetComponentInChildren<Text> ().text = text;
+		infoScreen.SetActive (true);
+	}
+	public void DismissInfoScreen() {
+		UnPause ();
+		infoScreen.SetActive (false);
 	}
 }
