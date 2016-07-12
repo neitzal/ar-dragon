@@ -40,6 +40,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0a79c2100c24d3c97c86e054572001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameoversound: {fileID: 8300000, guid: 563d244d1f3f2ef4fa151b9089315a69, type: 3}
+  resetButton: {fileID: 0}
+  fireBreathing: 0
+  isPause: 0
+  pauseButton: {fileID: 0}
+  buttonFire: {fileID: 0}
+  infoScreen: {fileID: 0}
+  portal: {fileID: 0}
+  gravity: {x: 0, y: -9.8, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
