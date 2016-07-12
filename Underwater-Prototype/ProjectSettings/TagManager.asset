@@ -7,6 +7,7 @@ TagManager:
   - Dragon
   - DragonHead
   - Obstacle
+  - Feuer
   layers:
   - Default
   - TransparentFX

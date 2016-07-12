@@ -12,8 +12,8 @@ GameObject:
   - 23: {fileID: 2354050}
   - 65: {fileID: 6558048}
   - 114: {fileID: 11497406}
-  - 114: {fileID: 11417178}
-  - 114: {fileID: 11437938}
+  - 114: {fileID: 11417910}
+  - 114: {fileID: 11482986}
   m_Layer: 10
   m_Name: obstacle
   m_TagString: Obstacle
@@ -27,10 +27,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193290}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.363, y: 0.4120506, z: 0.623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.01, y: 0.42, z: -4.82}
   m_LocalScale: {x: 99.46049, y: 92.306175, z: 92.306175}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,18 +79,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.006283269, z: 0.0028949927}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11417178
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de2502a7323b23e49b609da7deb718aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11437938
+--- !u!114 &11417910
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -101,8 +90,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0635cb64ed619574f80be83c2a191107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  other: {fileID: 477550, guid: 5df41f55b23e74d8dbf7953d501f77f1, type: 2}
-  distance: 1
+  distance: 2
+  MaterialChange: {fileID: 2100000, guid: 4fbb87a9b3a73aa48bb41e9cef4e9755, type: 2}
+--- !u!114 &11482986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de2502a7323b23e49b609da7deb718aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11497406
 MonoBehaviour:
   m_ObjectHideFlags: 1
