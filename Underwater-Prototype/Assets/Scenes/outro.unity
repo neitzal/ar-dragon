@@ -522,6 +522,7 @@ MonoBehaviour:
   Amplitude: 10
   frequency: 3.63
   forwardSpeed: 200
+  endPointz: 144
 --- !u!114 &503746485
 MonoBehaviour:
   m_ObjectHideFlags: 0
