@@ -120,4 +120,8 @@ public class HeadMovement : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionEnter(Collision col){
+		rb.angularVelocity -= Vector3.right * 20f; 
+	}
+
 }
