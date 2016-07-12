@@ -8,8 +8,13 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: New Material
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+<<<<<<< HEAD
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
+=======
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+>>>>>>> fa4ba3bbb8f2aacd18762ff4db6cae35cdc12c71
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -131,8 +136,16 @@ Material:
       data:
         first:
           name: _EmissionColor
+<<<<<<< HEAD
         second: {r: 0.9620689, g: 0, b: 0, a: 1}
       data:
         first:
           name: _Color
         second: {r: 1, g: 0.4044118, b: 0.4044118, a: 1}
+=======
+        second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _Color
+        second: {r: 0.25882354, g: 0.007843138, b: 0, a: 1}
+>>>>>>> fa4ba3bbb8f2aacd18762ff4db6cae35cdc12c71
