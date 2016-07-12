@@ -46,12 +46,12 @@ public class GameManagement : MonoBehaviour {
 		audiosource.volume = (float)0.4;
 
 		// setup scoreManager and UI
-		scoreManager = new ScoreManager (scoreUI);
+		scoreManager = new ScoreManager (scoreUI, this);
 
 		// disable resetButton
 		resetButton.SetActive(false);
 
-		ShowInfoScreen ("please place device above the levelmarker to start the game");
+		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
 
 	}
 	void Update() {
