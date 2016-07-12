@@ -9,21 +9,27 @@ public class ScoreManager {
 	public int[] highScore;
 	int highest;
 	public Text ui;
+	public int scoreForNextLevel = 500;
+	GameManagement gm;
 
-	public ScoreManager(Text text) {
+	public ScoreManager(Text text, GameManagement gameManagement) {
+		gm = gameManagement;
 		score = 0;
 		ui = text;
 		updateScore ();
-		Debug.Log ("scoremanager init");
 	}
 
 	public void AddScore(int value) {
 		score += value;
 		updateScore ();
+		if (score >= scoreForNextLevel) {
+			gm.ShowInfoScreen ("Herzlichen Glückwunsch, du hast genügend Diamanten gesammelt um ins nächste Level zu gelangen. Finde das Portal um zum nächsten Abenteuer aufzubrechen!");
+			gm.showPortal ();
+		}
 	}
 
 	void updateScore() {
-		Debug.Log(score.ToString());
+		//Debug.Log(score.ToString());
 		ui.text = score.ToString ();
 	}
 

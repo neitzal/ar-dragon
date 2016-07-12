@@ -17,7 +17,7 @@ public class GameManagement : MonoBehaviour {
 	public Text pauseButton;
 	public GameObject buttonFire;
 	public GameObject infoScreen;
-
+	public GameObject portal;
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
 	void Start() {
@@ -46,12 +46,12 @@ public class GameManagement : MonoBehaviour {
 		audiosource.volume = (float)0.4;
 
 		// setup scoreManager and UI
-		scoreManager = new ScoreManager (scoreUI);
+		scoreManager = new ScoreManager (scoreUI, this);
 
 		// disable resetButton
 		resetButton.SetActive(false);
 
-		ShowInfoScreen ("please place device above the levelmarker to start the game");
+		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
 
 	}
 	void Update() {
@@ -125,5 +125,8 @@ public class GameManagement : MonoBehaviour {
 	public void DismissInfoScreen() {
 		UnPause ();
 		infoScreen.SetActive (false);
+	}
+	public void showPortal() {
+		portal.SetActive (true);
 	}
 }

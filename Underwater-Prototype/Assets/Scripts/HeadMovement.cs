@@ -4,9 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class HeadMovement : MonoBehaviour {
-
-
-
 	public float forwardForce = 20.0f;
 	public float wiggleForce = 0.8f;
 	public float forwardForcePeriod = 1.0f;
@@ -22,7 +19,7 @@ public class HeadMovement : MonoBehaviour {
 	public List<Rigidbody> segmentBodies;
 
 	private float turnInput = 0; // Number between -1 (left) and 1 (right), specifies how head should be turned
-
+	private bool enteredPortal = false;
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
@@ -103,10 +100,16 @@ public class HeadMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (enteredPortal) {
+			rb.AddForce(10* Vector3.down);
+
+			return;
+		}
+
 		if (!Playing) {
 			rb.constraints = RigidbodyConstraints.None;
 			rb.useGravity = true;
-			rb.drag /= 2;
+			rb.drag = 0;
 			rb.angularDrag = 0;
 			return;
 		}
@@ -120,8 +123,19 @@ public class HeadMovement : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision col){
-		rb.angularVelocity -= Vector3.right * 20f; 
+
+	public void OnEnterPortal() {
+		enteredPortal = true;
+		rb.constraints = RigidbodyConstraints.None;
+
+		rb.drag = 0;
+		rb.angularDrag = 0;
+		gameObject.layer = 0;
+
+		foreach (var segment in segmentBodies) {
+			segment.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			segment.gameObject.layer = 0;
+		}
 	}
 
 }
