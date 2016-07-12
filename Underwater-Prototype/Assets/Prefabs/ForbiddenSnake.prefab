@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 477550}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ForbiddenSnake
   m_TagString: Dragon
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11447412}
   - 114: {fileID: 11405478}
   - 114: {fileID: 11406984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head
   m_TagString: DragonHead
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 4: {fileID: 465940}
   - 33: {fileID: 3373830}
   - 23: {fileID: 2306756}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +173,9 @@ MonoBehaviour:
   initRelativeOffset: {x: 0, y: 0.3, z: 0.3}
   initPositionSpread: 0.2
   angluarSpread: 0.5
+  gameManagement: {fileID: 0}
+  isBreathing: 0
+  breathesound: {fileID: 0}
 --- !u!114 &11406984
 MonoBehaviour:
   m_ObjectHideFlags: 1
