@@ -10,8 +10,13 @@ public class HeadMovement : MonoBehaviour {
 	public float forwardForceAmplitude = 10.0f;
 	public float torque = 3.0f;
 	public float angularVel = 180.0f;
+	public float upwardTiltEqualization = 0.5f;
+	public float axialTiltEqualization = 1.0f;
+	public float collisionHeadTilt = 20f;
+
 	public int nSegments = 10;
 	public float distanceBetweenSegments = 0.2f;
+
 	public GameObject segmentPrefab;
 	public bool Playing { get; set; }
 
@@ -102,7 +107,6 @@ public class HeadMovement : MonoBehaviour {
 	void FixedUpdate () {
 		if (enteredPortal) {
 			rb.AddForce(10* Vector3.down);
-
 			return;
 		}
 
@@ -115,12 +119,22 @@ public class HeadMovement : MonoBehaviour {
 		}
 
 		Vector3 direction = transform.forward;
-		direction.y = 0;
+//		direction.y = 0;
 		rb.AddForce((forwardForce + forwardForceAmplitude*Mathf.Sin(2*Mathf.PI * Time.time / forwardForcePeriod)) * direction.normalized);
 
 		if (Mathf.Sign(turnInput) * rb.angularVelocity.y < angularVel) {
 			rb.AddTorque(turnInput * torque * Vector3.up);	
 		}
+
+		// Smoothly restore horizontal head tilt
+		float upwardTilt = transform.eulerAngles.x;
+		if (upwardTilt > 180) upwardTilt -= 360;
+		rb.AddTorque(-upwardTiltEqualization * upwardTilt * transform.right);
+
+
+		float axialTilt = transform.eulerAngles.z;
+		if (axialTilt > 180) axialTilt -= 360;
+		rb.AddTorque(-axialTiltEqualization * axialTilt * transform.forward);
 	}
 
 
@@ -138,4 +152,9 @@ public class HeadMovement : MonoBehaviour {
 		}
 	}
 
+	void OnCollisionStay(Collision collision) {
+		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("StaticObstacles")) {
+			rb.AddTorque(-collisionHeadTilt * transform.right);
+		}
+	}
 }
