@@ -51,7 +51,7 @@ public class GameManagement : MonoBehaviour {
 		// disable resetButton
 		resetButton.SetActive(false);
 
-		//ShowInfoScreen ("please place device above levelmarker to start game");
+		ShowInfoScreen ("please place device above the levelmarker to start the game");
 
 	}
 	void Update() {
