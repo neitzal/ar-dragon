@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 461688}
   - 33: {fileID: 3315110}
   - 23: {fileID: 2396432}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fence
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194926}
   m_LocalRotation: {x: 0, y: 0.56052333, z: 0, w: 0.82813865}
-  m_LocalPosition: {x: 4.8571234, y: -2.5223212, z: -3.2841334}
+  m_LocalPosition: {x: 4.8571234, y: 0, z: -3.2841334}
   m_LocalScale: {x: 0.27212512, y: 0.27212515, z: 0.27212515}
   m_LocalEulerAnglesHint: {x: 0, y: 68.184, z: 0}
   m_Children: []

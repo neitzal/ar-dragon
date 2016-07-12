@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 438852}
   - 198: {fileID: 19812528}
   - 199: {fileID: 19939828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BloodTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 479426}
   - 33: {fileID: 3306758}
   - 23: {fileID: 2342034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: HeadMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 404406}
   - 198: {fileID: 19896934}
   - 199: {fileID: 19981198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BubbleParticleSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 425032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Snake
   m_TagString: Dragon
   m_Icon: {fileID: 0}
@@ -80,7 +80,8 @@ GameObject:
   - 114: {fileID: 11467078}
   - 114: {fileID: 11471866}
   - 114: {fileID: 11461606}
-  m_Layer: 0
+  - 82: {fileID: 8221370}
+  m_Layer: 9
   m_Name: Head
   m_TagString: DragonHead
   m_Icon: {fileID: 0}
@@ -218,6 +219,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &8221370
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187986}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3177116b0e5ca8241a65bd4f6aec16ef, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11439074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -282,6 +357,7 @@ MonoBehaviour:
   initRelativeOffset: {x: 0, y: 0.3, z: 0.3}
   initPositionSpread: 0.2
   angluarSpread: 0.5
+  breathesound: {fileID: 8300000, guid: 11a701d58bdd5594ea2814c5f0368ad5, type: 3}
 --- !u!198 &19812528
 ParticleSystem:
   m_ObjectHideFlags: 1

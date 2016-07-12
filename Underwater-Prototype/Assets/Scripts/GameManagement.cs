@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManagement : MonoBehaviour {
 
@@ -8,6 +9,9 @@ public class GameManagement : MonoBehaviour {
 
 	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip gameoversound;
+	public ScoreManager scoreManager;
+	public Text scoreUI;
+	public GameObject resetButton;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -35,6 +39,16 @@ public class GameManagement : MonoBehaviour {
 		audiosource.playOnAwake = false;
 		audiosource.volume = (float)0.4;
 
+		// setup scoreManager and UI
+		scoreManager = new ScoreManager (scoreUI);
+
+		// disable resetButton
+		resetButton.SetActive(false);
+
+	}
+
+	public void ResetGame() {
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void OnSnakeDead() {
@@ -42,6 +56,7 @@ public class GameManagement : MonoBehaviour {
 		gameOverTextAnim.SetTrigger("GameOver");
 		headMovement.Playing = false;
 		PlayGameOverSound();
+		resetButton.SetActive (true);
 	}
 		
 	void PlayGameOverSound(){
@@ -63,5 +78,4 @@ public class GameManagement : MonoBehaviour {
 	public void StopTurningLeft() {
 		headMovement.StopTurningLeft();
 	}
-
 }

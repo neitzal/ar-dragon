@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,7 +16,6 @@ public class HeadMovement : MonoBehaviour {
 	public int nSegments = 10;
 	public float distanceBetweenSegments = 0.2f;
 	public GameObject segmentPrefab;
-
 	public bool Playing { get; set; }
 
 	private Rigidbody rb;

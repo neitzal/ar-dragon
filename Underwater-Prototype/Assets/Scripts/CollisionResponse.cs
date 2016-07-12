@@ -11,6 +11,7 @@ public class CollisionResponse : MonoBehaviour {
 			collision.rigidbody.velocity = -3 * contactA.normal;
 
 			if (collision.gameObject.CompareTag("DragonHead")) {
+				Debug.Log ("snake hurt 20");
 				collision.gameObject.GetComponent<SnakeHealth>().ApplyDamage(20);
 
 			}

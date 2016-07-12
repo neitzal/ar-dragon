@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2326098}
   - 65: {fileID: 6581098}
   - 114: {fileID: 11444584}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: barrel
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5601234, y: -2.209321, z: -7.9341335}
+  m_LocalPosition: {x: 2.5601234, y: 0.38, z: -7.9341335}
   m_LocalScale: {x: 0.4827897, y: 0.48278978, z: 0.48278978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtsound: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
