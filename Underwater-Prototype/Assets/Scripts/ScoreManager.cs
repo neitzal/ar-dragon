@@ -24,6 +24,7 @@ public class ScoreManager {
 		updateScore ();
 		if (score >= scoreForNextLevel) {
 			gm.ShowInfoScreen ("Herzlichen Glückwunsch, du hast genügend Diamanten gesammelt um ins nächste Level zu gelangen. Finde das Portal um zum nächsten Abenteuer aufzubrechen!");
+			gm.showPortal ();
 		}
 	}
 
