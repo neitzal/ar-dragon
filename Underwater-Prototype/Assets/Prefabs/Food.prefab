@@ -48,6 +48,7 @@ GameObject:
   - 95: {fileID: 9556592}
   - 114: {fileID: 11461166}
   - 54: {fileID: 5466570}
+  - 114: {fileID: 11412122}
   m_Layer: 11
   m_Name: Food
   m_TagString: Untagged
@@ -194,6 +195,19 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11412122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc74534506f164bbcaf04c127a8378f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 19867520}
+  foodsound: {fileID: 8300000, guid: 2878b3f01bbd99741b68d098d59dd13b, type: 3}
 --- !u!114 &11448710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,9 +219,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6ce7f94ed9842039b303294bc86147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 19867520}
-  foodsound: {fileID: 8300000, guid: 2878b3f01bbd99741b68d098d59dd13b, type: 3}
-  gameManagement: {fileID: 0}
+  gameManagementComponent: {fileID: 0}
+  foodType: 0
 --- !u!114 &11461166
 MonoBehaviour:
   m_ObjectHideFlags: 1

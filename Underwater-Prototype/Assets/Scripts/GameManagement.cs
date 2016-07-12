@@ -12,6 +12,7 @@ public class GameManagement : MonoBehaviour {
 	public ScoreManager scoreManager;
 	public Text scoreUI;
 	public GameObject resetButton;
+	public bool fireBreating = false;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -77,5 +78,10 @@ public class GameManagement : MonoBehaviour {
 
 	public void StopTurningLeft() {
 		headMovement.StopTurningLeft();
+	}
+
+	public void SetFireBreathing (bool value) {
+		fireBreating = value;
+		Debug.Log("Firebreating set to: " + fireBreating);
 	}
 }

@@ -10,29 +10,14 @@ public class FoodBehavior : MonoBehaviour {
 		Diamond 
 	}
 		
-	public ParticleSystem particle;
-	Animator animator;
-
-	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
-	public AudioClip foodsound;
-	public GameObject gameManagement;
+	public GameObject gameManagementComponent;
 	public FoodType foodType;
+	private GameManagement gameManager;
 
-
-
-	// Use this for initialization
-	void Start () 
-	{
-		gameObject.AddComponent<AudioSource> ();
-		audiosource.clip = foodsound;
-		audiosource.playOnAwake = false;
-
-		foodType = FoodType.Regular;
+	void Start() {
+		gameManager = gameManagementComponent.GetComponent<GameManagement> ();
 	}
 
-	void Awake() {
-		animator = GetComponent<Animator> ();
-	}
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.rigidbody == null) {
@@ -51,54 +36,18 @@ public class FoodBehavior : MonoBehaviour {
 					// TODO: sometimes segment animation get broken and wiggling looks not very smooth
 					collision.rigidbody.GetComponent<HeadMovement> ().CreateSegments (5);
 
-					animator.SetTrigger ("Disappear");
-					particle.Play ();
-					gameManagement.GetComponent<GameManagement> ().scoreManager.AddScore (100);
+					gameManager.scoreManager.AddScore (100);
 					break;
 				}
 
 				case FoodType.Diamond: {
 					Debug.Log ("collision dragonhead-diamond");
+					Destroy (gameObject);
+					gameManager.scoreManager.AddScore (200);
+					gameManager.SetFireBreathing (true);
 					break;
 				}
 			}
 		}
-	}
-		
-
-	void Update() {
-		if(animator.GetCurrentAnimatorStateInfo(0).IsName("Disappeared")) {
-			Debug.Log("disappeared");
-			animator.SetTrigger("Appear");
-			Reposition ();
-		}
-	}
-
-	void OnCollisionStay(Collision collision) {
-		if (collision.collider.gameObject.CompareTag("Obstacle")) {
-			Debug.Log("food collision with obstacle, new position");
-			Reposition ();
-		}
-
-		if (collision.rigidbody != null) {
-			if (collision.gameObject.CompareTag ("DragonHead")) {
-				if (!audiosource.isPlaying) {
-					audiosource.Play ();
-				}
-			}
-		}
-
-	}
-
-	void Reposition() {
-		GetComponent<Rigidbody> ().velocity = Vector3.zero;
-		//TODO: create vector from level boundaries
-
-		//TODO: make indicator for next food position (maybe like a compass needle)
-
-		transform.position = new Vector3(
-			Random.Range(-5f, 5f), 
-			transform.position.y, 
-			Random.Range(-5f, 5f));
 	}
 }
