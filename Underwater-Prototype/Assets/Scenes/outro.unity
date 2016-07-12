@@ -519,8 +519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8d5ee1fd9cbc14cbf3fcc37f1d48df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amplitude: 40
-  frequency: 3.06
+  Amplitude: 22
+  frequency: 3.72
   forwardSpeed: 200
 --- !u!114 &503746485
 MonoBehaviour:
@@ -539,7 +539,7 @@ MonoBehaviour:
   forwardForceAmplitude: 0
   torque: 0
   angularVel: 0
-  nSegments: 20
+  nSegments: 30
   distanceBetweenSegments: 0.2
   segmentPrefab: {fileID: 192122, guid: 423b9d6c208e59b45957d07bda585bd8, type: 2}
   segmentBodies: []
