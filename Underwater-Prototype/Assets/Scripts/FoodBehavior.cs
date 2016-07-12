@@ -41,11 +41,10 @@ public class FoodBehavior : MonoBehaviour {
 				}
 
 				case FoodType.Diamond: {
-					gameManager.ShowInfoScreen ("Congratulations, you collected a diamond. Your dragon is now able to breath fire!");
-					Debug.Log ("collision dragonhead-diamond");
-					Destroy (gameObject);
-					gameManager.scoreManager.AddScore (200);
-					gameManager.SetFireBreathing (true);
+					gameManager.ShowInfoScreen ("Gratulation, Du hast einen Diamanten eingesammelt. Der Drache kann jetzt Feuer spucken!");
+					Destroy(gameObject);
+					gameManager.scoreManager.AddScore(200);
+					gameManager.SetFireBreathing(true);
 					break;
 				}
 			}

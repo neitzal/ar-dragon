@@ -51,7 +51,7 @@ public class GameManagement : MonoBehaviour {
 		// disable resetButton
 		resetButton.SetActive(false);
 
-		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
+//		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
 
 	}
 	void Update() {
@@ -111,10 +111,12 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void TriggerPause() {
-		if (Time.timeScale == 0)
-			UnPause ();
-		else
+		if (Time.timeScale == 0) {
+			UnPause();
+			DismissInfoScreen();
+		} else {
 			Pause ();
+		}
 	}
 
 	public void ShowInfoScreen(string text) {
@@ -122,10 +124,12 @@ public class GameManagement : MonoBehaviour {
 		infoScreen.GetComponentInChildren<Text> ().text = text;
 		infoScreen.SetActive (true);
 	}
+
 	public void DismissInfoScreen() {
 		UnPause ();
 		infoScreen.SetActive (false);
 	}
+
 	public void showPortal() {
 		portal.SetActive (true);
 	}

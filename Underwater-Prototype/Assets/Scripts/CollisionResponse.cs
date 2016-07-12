@@ -21,8 +21,8 @@ public class CollisionResponse : MonoBehaviour {
 	void OnCollisionStay(Collision col){
 		if (col.rigidbody != null) {
 			if (col.gameObject.CompareTag ("DragonHead")) {
-				hurtsound = GameObject.Find ("HurtSound");
-				hurtsound.GetComponent<AudioSource> ().Play ();
+//				hurtsound = GameObject.Find ("HurtSound");
+//				hurtsound.GetComponent<AudioSource> ().Play ();
 			}
 		}
 
