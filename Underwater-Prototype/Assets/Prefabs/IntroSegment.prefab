@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11458522}
   - 135: {fileID: 13506920}
   m_Layer: 0
-  m_Name: ForbiddenSegment
+  m_Name: IntroSegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -366,7 +366,7 @@ Rigidbody:
   m_Mass: 0.1
   m_Drag: 7
   m_AngularDrag: 0.5
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   period: 1.5
   offset: 0
-  forwardForce: 4
+  forwardForce: 1.1
 --- !u!135 &13506920
 SphereCollider:
   m_ObjectHideFlags: 1
