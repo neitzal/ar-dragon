@@ -9,8 +9,9 @@ public class ScoreManager {
 	public int[] highScore;
 	int highest;
 	public Text ui;
-	public int scoreForNextLevel = 500;
+	public int scoreForNextLevel = 600;
 	GameManagement gm;
+	private bool isLevelUp;
 
 	public ScoreManager(Text text, GameManagement gameManagement) {
 		gm = gameManagement;
@@ -22,9 +23,10 @@ public class ScoreManager {
 	public void AddScore(int value) {
 		score += value;
 		updateScore ();
-		if (score >= scoreForNextLevel) {
+		if (score >= scoreForNextLevel && !isLevelUp) {
 			gm.ShowInfoScreen ("Herzlichen Glückwunsch, du hast genügend Diamanten gesammelt um ins nächste Level zu gelangen. Finde das Portal um zum nächsten Abenteuer aufzubrechen!");
 			gm.showPortal ();
+			isLevelUp = true;
 		}
 	}
 
