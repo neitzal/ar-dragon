@@ -10,7 +10,7 @@ public class GameManagement : MonoBehaviour {
 	private AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip gameoversound;
 	public ScoreManager scoreManager;
-	public Text scoreUI;
+	private GameObject scoreUI;
 	public GameObject resetButton;
 	public bool fireBreathing = false;
 	public bool isPause = false;
@@ -46,6 +46,7 @@ public class GameManagement : MonoBehaviour {
 		audiosource.volume = (float)0.4;
 
 		// setup scoreManager and UI
+		scoreUI = GameObject.Find("Canvas/Score");
 		scoreManager = new ScoreManager (scoreUI, this);
 
 		// disable resetButton

@@ -391,6 +391,8 @@ MonoBehaviour:
   turnSpeed: 30.51
   target: {fileID: 503746480}
   forwardSpeed: 2
+  minDistance: 3
+  waterLevel: 4
 --- !u!1 &156959014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 429170, guid: 864f6483d822e274ba7ca480a651d1db, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11416388, guid: 864f6483d822e274ba7ca480a651d1db, type: 2}
       propertyPath: forwardForce

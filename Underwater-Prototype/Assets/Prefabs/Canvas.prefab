@@ -203,6 +203,8 @@ GameObject:
   - 224: {fileID: 22485252}
   - 222: {fileID: 22278870}
   - 114: {fileID: 11433914}
+  - 95: {fileID: 9597872}
+  - 114: {fileID: 11402314}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -402,6 +404,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &9597872
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a4975205deaf54786a8daabeb3f1c913, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -449,6 +468,17 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &11402314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cddccc0e89084e6ea55486f6784cf10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11407380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -689,7 +719,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5000000
+  m_Text: 0
 --- !u!114 &11435458
 MonoBehaviour:
   m_ObjectHideFlags: 1

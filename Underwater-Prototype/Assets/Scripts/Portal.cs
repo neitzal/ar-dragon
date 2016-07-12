@@ -43,6 +43,7 @@ public class Portal : MonoBehaviour {
 			snakeHead = other.gameObject;
 			snakeHead.GetComponent<HeadMovement>().OnEnterPortal();
 			GameObject.Find("LevelWonOverlay").GetComponent<Animator>().SetTrigger("LevelWon");
+			GetComponent<ChangeScene> ().ChangeToScene ("watertoland");
 		}
 	}
 
