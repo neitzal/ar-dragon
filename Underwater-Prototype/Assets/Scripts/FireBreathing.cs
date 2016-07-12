@@ -10,6 +10,7 @@ public class FireBreathing : MonoBehaviour {
 	public float initPositionSpread = 0.2f;
 	public float angluarSpread = 0.5f;
 	public GameManagement gameManagement;
+	public bool isBreathing = false;
 
 	public AudioSource audiosource { get { return GetComponent<AudioSource> (); } }
 	public AudioClip breathesound;
@@ -25,7 +26,7 @@ public class FireBreathing : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (gameManagement.fireBreating && Input.GetKey(KeyCode.Space)) {
+		if (gameManagement.fireBreathing && (Input.GetKey(KeyCode.Space) || isBreathing)) {
 			BreatheFire();
 			PlayBreatheSound ();
 		}
@@ -45,5 +46,11 @@ public class FireBreathing : MonoBehaviour {
 
 	void PlayBreatheSound (){
 		audiosource.Play ();
+	}
+	public void startBreathing() {
+		isBreathing = true;
+	}
+	public void stopBreathing() {
+		isBreathing = false;
 	}
 }

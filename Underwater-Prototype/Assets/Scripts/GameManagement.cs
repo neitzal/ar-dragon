@@ -12,7 +12,8 @@ public class GameManagement : MonoBehaviour {
 	public ScoreManager scoreManager;
 	public Text scoreUI;
 	public GameObject resetButton;
-	public bool fireBreating = false;
+	public bool fireBreathing = false;
+	public GameObject buttonFire;
 
 	public Vector3 gravity = new Vector3(0, -9.81f, 0);
 
@@ -46,6 +47,10 @@ public class GameManagement : MonoBehaviour {
 		// disable resetButton
 		resetButton.SetActive(false);
 
+	}
+	void Update() {
+		if (fireBreathing != buttonFire.activeSelf)
+			buttonFire.SetActive (fireBreathing);
 	}
 
 	public void ResetGame() {
@@ -81,7 +86,7 @@ public class GameManagement : MonoBehaviour {
 	}
 
 	public void SetFireBreathing (bool value) {
-		fireBreating = value;
-		Debug.Log("Firebreating set to: " + fireBreating);
+		fireBreathing = value;
+		Debug.Log("Firebreating set to: " + fireBreathing);
 	}
 }
