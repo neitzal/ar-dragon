@@ -519,8 +519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8d5ee1fd9cbc14cbf3fcc37f1d48df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Amplitude: 22
-  frequency: 3.72
+  Amplitude: 10
+  frequency: 3.63
   forwardSpeed: 200
 --- !u!114 &503746485
 MonoBehaviour:
@@ -1126,7 +1126,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1430011330}
   m_LocalRotation: {x: 0.0496858, y: 0.29504928, z: 0.011919397, w: 0.9541149}
-  m_LocalPosition: {x: 146.07, y: 46.33, z: 41.93}
+  m_LocalPosition: {x: 145.52, y: 46.3, z: 42.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 365.0358, y: 34.4991, z: 362.996}
   m_Children: []
@@ -1321,7 +1321,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 407142, guid: fe9f975bf5e5d2d428ee17d9093bc115, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11496782, guid: fe9f975bf5e5d2d428ee17d9093bc115, type: 2}
       propertyPath: segmentPrefab
@@ -1363,6 +1363,10 @@ Prefab:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2374984, guid: fe9f975bf5e5d2d428ee17d9093bc115, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b34d77c70d26f0a40b9df478ad1c9a86, type: 2}
     m_RemovedComponents:
     - {fileID: 11496782, guid: fe9f975bf5e5d2d428ee17d9093bc115, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fe9f975bf5e5d2d428ee17d9093bc115, type: 2}
