@@ -8,16 +8,16 @@ public class ScoreManager {
 	public int score = 0;
 	public int[] highScore;
 	int highest;
-	public Text ui;
+	public GameObject scoreUI;
 	public int scoreForNextLevel = 600;
 	GameManagement gm;
 	private bool isLevelUp;
 
-	public ScoreManager(Text text, GameManagement gameManagement) {
+	public ScoreManager(GameObject scoreUI, GameManagement gameManagement) {
 		gm = gameManagement;
 		score = 0;
-		ui = text;
-		updateScore ();
+		this.scoreUI = scoreUI;
+		//updateScore ();
 	}
 
 	public void AddScore(int value) {
@@ -31,8 +31,8 @@ public class ScoreManager {
 	}
 
 	void updateScore() {
-		//Debug.Log(score.ToString());
-		ui.text = score.ToString ();
+		scoreUI.GetComponent<Text> ().text = score.ToString ();
+		scoreUI.GetComponent<ScoreAnimation> ().TriggerScoreAnimation ();
 	}
 
 	List<int> getHighScores() {
