@@ -425,6 +425,7 @@ GameObject:
   - 4: {fileID: 54548631}
   - 33: {fileID: 54548633}
   - 23: {fileID: 54548632}
+  - 114: {fileID: 54548634}
   m_Layer: 10
   m_Name: pCube60
   m_TagString: Untagged
@@ -480,6 +481,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 54548630}
   m_Mesh: {fileID: 4300242, guid: 420f5e13413974f87bfe1d9289768f5f, type: 3}
+--- !u!114 &54548634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 54548630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &64356992
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +803,7 @@ GameObject:
   - 33: {fileID: 170186985}
   - 23: {fileID: 170186984}
   - 65: {fileID: 170186986}
+  - 114: {fileID: 170186987}
   m_Layer: 10
   m_Name: pCube4
   m_TagString: Untagged
@@ -855,6 +871,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010000003, y: 0.01, z: 0.010000001}
   m_Center: {x: 0.0000000018626451, y: 0, z: 0}
+--- !u!114 &170186987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 170186982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1001 &180904378
 Prefab:
   m_ObjectHideFlags: 0
@@ -1485,6 +1515,7 @@ GameObject:
   - 4: {fileID: 299211704}
   - 33: {fileID: 299211706}
   - 23: {fileID: 299211705}
+  - 114: {fileID: 299211707}
   m_Layer: 10
   m_Name: pCube3
   m_TagString: Untagged
@@ -1540,6 +1571,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 299211703}
   m_Mesh: {fileID: 4300228, guid: 420f5e13413974f87bfe1d9289768f5f, type: 3}
+--- !u!114 &299211707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 299211703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!4 &321250681 stripped
 Transform:
   m_PrefabParentObject: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
@@ -1732,8 +1777,71 @@ Transform:
   - {fileID: 2048950634}
   - {fileID: 1005402310}
   - {fileID: 1297783080}
+  - {fileID: 355321970}
   m_Father: {fileID: 647370916}
   m_RootOrder: 8
+--- !u!1001 &355321969
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 333119513}
+    m_Modifications:
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.028
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -6.877
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 193290, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_Name
+      value: pCube131 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 99.46049
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 92.306175
+      objectReference: {fileID: 0}
+    - target: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 92.306175
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &355321970 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 490420, guid: 7b6549919f301254b9547665fdf0cf4e, type: 2}
+  m_PrefabInternal: {fileID: 355321969}
 --- !u!1 &366682781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,6 +2818,7 @@ GameObject:
   - 33: {fileID: 539590842}
   - 23: {fileID: 539590841}
   - 65: {fileID: 539590843}
+  - 114: {fileID: 539590844}
   m_Layer: 10
   m_Name: pCube1
   m_TagString: Untagged
@@ -2777,6 +2886,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.009999998, y: 0.009999998, z: 0.01}
   m_Center: {x: -6.9849193e-10, y: -6.9849193e-10, z: -0.000000019092113}
+--- !u!114 &539590844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 539590839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &549949059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,6 +5561,7 @@ GameObject:
   - 33: {fileID: 1049030211}
   - 23: {fileID: 1049030210}
   - 65: {fileID: 1049030212}
+  - 114: {fileID: 1049030213}
   m_Layer: 10
   m_Name: pCube58
   m_TagString: Untagged
@@ -5505,6 +5629,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.010000003, y: 0.01, z: 0.010000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1049030213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1049030208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &1059495798
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,6 +5917,7 @@ GameObject:
   - 33: {fileID: 1105940528}
   - 23: {fileID: 1105940527}
   - 65: {fileID: 1105940529}
+  - 114: {fileID: 1105940530}
   m_Layer: 10
   m_Name: pCube53
   m_TagString: Untagged
@@ -5846,6 +5985,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01959164, y: 0.005514562, z: 0.00656435}
   m_Center: {x: 0.0047958167, y: -0.0022427188, z: 0.00090281083}
+--- !u!114 &1105940530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1105940525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &1125378345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9002,7 +9155,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612592162}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -15.834783, y: 0.53815126, z: 0.25574636}
+  m_LocalPosition: {x: 16.11, y: 0.54, z: -23.37}
   m_LocalScale: {x: 36.289238, y: 36.289238, z: 36.289238}
   m_LocalEulerAnglesHint: {x: -89.980194, y: 0, z: 0}
   m_Children: []
@@ -9222,6 +9375,7 @@ GameObject:
   - 33: {fileID: 1648888811}
   - 23: {fileID: 1648888810}
   - 65: {fileID: 1648888809}
+  - 114: {fileID: 1648888812}
   m_Layer: 10
   m_Name: pCube52 (4)
   m_TagString: Untagged
@@ -9289,6 +9443,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1648888807}
   m_Mesh: {fileID: 4300236, guid: 420f5e13413974f87bfe1d9289768f5f, type: 3}
+--- !u!114 &1648888812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1648888807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!4 &1659989174 stripped
 Transform:
   m_PrefabParentObject: {fileID: 412598, guid: c279f4fdb85198a4383c16252b9cb9cc, type: 2}
@@ -10175,6 +10343,7 @@ GameObject:
   - 4: {fileID: 1898338891}
   - 33: {fileID: 1898338893}
   - 23: {fileID: 1898338892}
+  - 114: {fileID: 1898338894}
   m_Layer: 10
   m_Name: pCube59
   m_TagString: Untagged
@@ -10230,6 +10399,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1898338890}
   m_Mesh: {fileID: 4300240, guid: 420f5e13413974f87bfe1d9289768f5f, type: 3}
+--- !u!114 &1898338894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1898338890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &1901424812
 GameObject:
   m_ObjectHideFlags: 0
@@ -10605,6 +10788,7 @@ GameObject:
   - 33: {fileID: 1927027635}
   - 23: {fileID: 1927027634}
   - 65: {fileID: 1927027633}
+  - 114: {fileID: 1927027636}
   m_Layer: 10
   m_Name: pCube52 (3)
   m_TagString: Untagged
@@ -10672,6 +10856,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1927027631}
   m_Mesh: {fileID: 4300236, guid: 420f5e13413974f87bfe1d9289768f5f, type: 3}
+--- !u!114 &1927027636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1927027631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3961c7ddcb7194f0e9f0f94152e105b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  recoil: 3
+  hurtsound: {fileID: 0}
 --- !u!1 &1946099660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10929,7 +11127,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405916, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.53
+      value: -15.22
       objectReference: {fileID: 0}
     - target: {fileID: 405916, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
       propertyPath: m_LocalPosition.y
@@ -10937,7 +11135,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405916, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 9.677151
+      value: -23.29
       objectReference: {fileID: 0}
     - target: {fileID: 405916, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10957,7 +11155,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405916, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409884, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409884, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4ea9b40f801994ec5ad5525c814cccbd, type: 2}

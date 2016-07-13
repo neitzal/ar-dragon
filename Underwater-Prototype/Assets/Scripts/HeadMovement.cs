@@ -154,7 +154,6 @@ public class HeadMovement : MonoBehaviour {
 	void OnCollisionStay(Collision collision) {
 		if (collision.collider.gameObject.layer == LayerMask.NameToLayer("StaticObstacles")) {
 			rb.AddTorque(-collisionHeadTilt * transform.right);
-			Debug.Log("Collision stay...");
 		}
 	}
 }
