@@ -8399,6 +8399,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11445442, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 617379935}
+    - target: {fileID: 11445442, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DismissInfoScreen
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d9094194945244b380fc1beff5342a9, type: 2}
   m_IsPrefabParent: 0

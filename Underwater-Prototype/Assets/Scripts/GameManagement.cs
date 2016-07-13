@@ -52,7 +52,7 @@ public class GameManagement : MonoBehaviour {
 		// disable resetButton
 		resetButton.SetActive(false);
 
-//		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
+		ShowInfoScreen ("Bitte halte dein Gerät über den Levelmarker um zu beginnen.");
 
 	}
 	void Update() {

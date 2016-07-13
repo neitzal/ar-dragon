@@ -9,7 +9,7 @@ public class ScoreManager {
 	public int[] highScore;
 	int highest;
 	public GameObject scoreUI;
-	public int scoreForNextLevel = 600;
+	public int scoreForNextLevel = 100;
 	GameManagement gm;
 	private bool isLevelUp;
 

@@ -34,7 +34,7 @@ public class FoodBehavior : MonoBehaviour {
 					// TODO: if body is near level boundary segment gets created outside of level
 
 					// TODO: sometimes segment animation get broken and wiggling looks not very smooth
-					collision.rigidbody.GetComponent<HeadMovement> ().CreateSegments (5);
+					collision.rigidbody.GetComponent<HeadMovement> ().CreateSegments (2);
 
 					gameManager.scoreManager.AddScore (100);
 					break;
