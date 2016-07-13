@@ -43,12 +43,13 @@ public class Portal : MonoBehaviour {
 			snakeHead = other.gameObject;
 			snakeHead.GetComponent<HeadMovement>().OnEnterPortal();
 			GameObject.Find("LevelWonOverlay").GetComponent<Animator>().SetTrigger("LevelWon");
-			GetComponent<ChangeScene> ().ChangeToScene ("watertoland");
+
 		}
 	}
 
 	public void Explode() {
 		var explosion = (GameObject) Instantiate(portalExplosion, transform.position, Quaternion.identity);
 		Destroy(gameObject);
+		GetComponent<ChangeScene> ().ChangeToScene ("watertoland");
 	}
 }
